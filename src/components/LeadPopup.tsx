@@ -3,64 +3,159 @@ import { X, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 
-const STORAGE_KEY = "nova_lead_submitted";
+const STORAGE_KEY = "lead_submitted_time";
+const CLOSE_KEY = "lead_closed_time";
+
+const FIFTEEN_MIN = 15 * 60 * 1000;
+const ONE_DAY = 24 * 60 * 60 * 1000;
 
 const LeadPopup = () => {
   const [open, setOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
   const { toast } = useToast();
 
+  // ✅ POPUP LOGIC
   useEffect(() => {
-    if (localStorage.getItem(STORAGE_KEY)) return;
-    const t = setTimeout(() => setOpen(true), 15000);
-    return () => clearTimeout(t);
+    const now = Date.now();
+
+    const submittedTime = Number(localStorage.getItem(STORAGE_KEY) || 0);
+    const closedTime = Number(localStorage.getItem(CLOSE_KEY) || 0);
+
+    // If submitted → block 24h
+    if (submittedTime && now - submittedTime < ONE_DAY) return;
+
+    // If closed → wait 15 min
+    if (closedTime && now - closedTime < FIFTEEN_MIN) return;
+
+    // Show popup after small delay (better UX)
+    const timer = setTimeout(() => setOpen(true), 3000);
+
+    return () => clearTimeout(timer);
   }, []);
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  // ✅ CLOSE
+  const handleClose = () => {
+    localStorage.setItem(CLOSE_KEY, Date.now().toString());
+    setOpen(false);
+  };
+
+  // ✅ VALIDATION
+  const validate = (name, phone) => {
+    if (!name || name.length < 2) {
+      return "Name must be at least 2 characters";
+    }
+
+    if (name.length > 50) {
+      return "Name is too long";
+    }
+
+    if (!/^[a-zA-Z\s]+$/.test(name)) {
+      return "Name should contain only letters";
+    }
+
+    if (!phone) {
+      return "Phone number is required";
+    }
+
+    if (!/^[6-9]\d{9}$/.test(phone)) {
+      return "Enter valid 10-digit Indian phone number";
+    }
+
+    return null;
+  };
+
+  // ✅ SUBMIT
+  const onSubmit = (e) => {
     e.preventDefault();
+    setLoading(true);
+
     const fd = new FormData(e.currentTarget);
     const name = String(fd.get("name") || "").trim();
     const phone = String(fd.get("phone") || "").trim();
-    if (!name || name.length > 100) return toast({ title: "Please enter your name" });
-    if (!/^[+\d\s-]{7,20}$/.test(phone)) return toast({ title: "Please enter a valid phone number" });
-    localStorage.setItem(STORAGE_KEY, "1");
-    window.location.href = "/thank-you";
+
+    const error = validate(name, phone);
+
+    if (error) {
+      setLoading(false);
+      return toast({ title: error });
+    }
+
+    // Save submission time
+    localStorage.setItem(STORAGE_KEY, Date.now().toString());
+
+    toast({ title: "Submitted successfully 🎉" });
+
+    setTimeout(() => {
+      setOpen(false);
+      window.location.href = "/thank-you";
+    }, 800);
   };
 
   if (!open) return null;
 
   return (
-    <div className="fixed inset-0 z-50 grid place-items-center bg-foreground/50 backdrop-blur-sm p-4 animate-fade-in" role="dialog" aria-modal="true">
-      <div className="relative w-full max-w-md bg-card rounded-3xl shadow-glow overflow-hidden animate-scale-in">
+    <div className="fixed inset-0 z-50 grid place-items-center bg-black/50 backdrop-blur-sm p-4">
+      <div className="relative w-full max-w-md bg-white rounded-3xl shadow-xl overflow-hidden">
+
+        {/* Close */}
         <button
-          onClick={() => setOpen(false)}
-          aria-label="Close"
-          className="absolute top-4 right-4 z-10 h-9 w-9 rounded-full bg-background hover:bg-muted grid place-items-center"
+          onClick={handleClose}
+          className="absolute top-4 right-4 h-9 w-9 rounded-full bg-gray-100 hover:bg-gray-200 grid place-items-center"
         >
           <X className="h-4 w-4" />
         </button>
-        <div className="gradient-primary p-6 text-primary-foreground">
+
+        {/* Header */}
+        <div className="p-6 text-white" style={{ backgroundColor: "#e1658a" }}>
           <div className="flex items-center gap-2">
             <Heart className="h-5 w-5" />
-            <span className="text-xs uppercase tracking-widest font-semibold">Limited Slots</span>
+            <span className="text-xs uppercase font-semibold">
+              Limited Slots
+            </span>
           </div>
-          <h3 className="mt-3 font-display text-2xl font-semibold leading-tight">
-            Get a Free IVF Consultation Today
+
+          <h3 className="mt-3 text-2xl font-semibold">
+            Get a Free IVF Consultation
           </h3>
-          <p className="mt-2 text-primary-foreground/85 text-sm">
-            Speak with a fertility expert, no cost & no commitment.
+
+          <p className="text-sm opacity-90 mt-1">
+            Speak with expert — No cost, No commitment.
           </p>
         </div>
+
+        {/* Form */}
         <form onSubmit={onSubmit} className="p-6 space-y-3">
-          <input name="name" required maxLength={100} placeholder="Your name" className="w-full px-4 py-3 rounded-xl border border-input bg-background" />
-          <input name="phone" required type="tel" placeholder="Phone number" className="w-full px-4 py-3 rounded-xl border border-input bg-background" />
-          <select name="treatment" className="w-full px-4 py-3 rounded-xl border border-input bg-background">
+          <input
+            name="name"
+            placeholder="Your name"
+            className="w-full px-4 py-3 rounded-xl border focus:ring-2 focus:ring-pink-400 outline-none"
+          />
+
+          <input
+            name="phone"
+            placeholder="Phone number"
+            className="w-full px-4 py-3 rounded-xl border focus:ring-2 focus:ring-pink-400 outline-none"
+          />
+
+          <select className="w-full px-4 py-3 rounded-xl border">
             <option>Select treatment</option>
-            <option>IVF</option><option>IUI</option><option>ICSI</option>
-            <option>Egg Freezing</option><option>Laparoscopy</option><option>Hysteroscopy</option>
+            <option>IVF</option>
+            <option>IUI</option>
+            <option>ICSI</option>
           </select>
-          <Button variant="cta" size="lg" className="w-full">Get Free Consultation</Button>
-          <p className="text-xs text-center text-muted-foreground">100% confidential. No spam.</p>
+
+          <Button
+            disabled={loading}
+            className="w-full bg-[#e1658a] text-white hover:opacity-90"
+          >
+            {loading ? "Submitting..." : "Get Free Consultation"}
+          </Button>
+
+          <p className="text-xs text-center text-gray-400">
+            100% confidential
+          </p>
         </form>
+
       </div>
     </div>
   );

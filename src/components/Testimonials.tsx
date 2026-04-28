@@ -5,7 +5,7 @@ const reviews = [
   {
     name: "Anjali & Vikram",
     city: "Mumbai",
-    text: "After 7 years of trying, Nova Fertility gave us our miracle. Dr. Priya treated us like family every step of the way. Words can never repay this gift.",
+    text: "After 7 years of trying, Srijan IVF gave us our miracle. Dr. Priya treated us like family every step of the way. Words can never repay this gift.",
   },
   {
     name: "Sneha & Arjun",
@@ -15,7 +15,7 @@ const reviews = [
   {
     name: "Reema & Karan",
     city: "Bangalore",
-    text: "We were exhausted from failed cycles elsewhere. Nova's personalized protocol worked the very first time. We are forever grateful.",
+    text: "We were exhausted from failed cycles elsewhere. Srijan's personalized protocol worked the very first time. We are forever grateful.",
   },
 ];
 
