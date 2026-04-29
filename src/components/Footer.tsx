@@ -3,8 +3,6 @@ import { MapPin, Phone, Mail, Clock, Facebook, Instagram, Youtube, Linkedin } fr
 const Footer = () => (
   <footer id="contact" className="pt-20 pb-8 text-white" style={{ backgroundColor: "#e1658a" }}>
     <div className="container mx-auto grid md:grid-cols-2 lg:grid-cols-4 gap-12">
-
-      {/* Logo + About */}
       <div>
         <div className="flex items-center gap-2">
           <div className="h-10 w-10 rounded-2xl bg-white text-[#e1658a] grid place-items-center font-bold">
@@ -18,7 +16,6 @@ const Footer = () => (
           We offer advanced treatments like IVF, IUI, ICSI and more.
         </p>
 
-        {/* Social Icons */}
         <div className="mt-5 flex gap-3">
           {[Facebook, Instagram, Youtube, Linkedin].map((I, i) => (
             <a
@@ -32,7 +29,6 @@ const Footer = () => (
         </div>
       </div>
 
-      {/* Quick Links */}
       <div>
         <h4 className="font-semibold mb-4">Quick Links</h4>
         <ul className="space-y-2 text-sm text-white/80">
@@ -46,7 +42,6 @@ const Footer = () => (
         </ul>
       </div>
 
-      {/* Centres */}
       <div>
         <h4 className="font-semibold mb-4">Centres</h4>
         <ul className="space-y-2 text-sm text-white/80">
@@ -60,7 +55,6 @@ const Footer = () => (
         </ul>
       </div>
 
-      {/* Contact */}
       <div>
         <h4 className="font-semibold mb-4">Get in Touch</h4>
         <ul className="space-y-3 text-sm text-white/80">
@@ -92,7 +86,6 @@ const Footer = () => (
 
     </div>
 
-    {/* Bottom */}
     <div className="container mx-auto border-t border-white/20 mt-14 pt-6 text-center text-sm text-white/70">
       © {new Date().getFullYear()} Srijan IVF. All rights reserved.
     </div>
