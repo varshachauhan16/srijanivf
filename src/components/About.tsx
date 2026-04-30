@@ -9,7 +9,7 @@ const stats = [
 ];
 
 const About = () => (
-  <section id="about" className="pb-10 gradient-soft">
+  <section id="about" className="py-10 gradient-soft">
     <div className="container mx-auto grid lg:grid-cols-2 gap-16 items-center">
       <div>
         <span className="text-sm uppercase tracking-[0.2em] text-primary font-semibold">

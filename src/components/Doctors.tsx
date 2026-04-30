@@ -8,8 +8,8 @@ import {
   Star,
 } from "lucide-react";
 
-import doc1 from "@/assets/doctor-1.jpg";
-import doc2 from "@/assets/doctor-2.jpg";
+import doc1 from "@/assets/Dr.-Pallavisingh.webp";
+import doc2 from "@/assets/Dr.-santosh.webp";
 
 const doctors = [
   {

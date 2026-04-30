@@ -6,7 +6,7 @@ const WhatsAppButton = () => (
     target="_blank"
     rel="noopener"
     aria-label="Chat on WhatsApp"
-    className="fixed bottom-6 right-6 z-30 h-14 w-14 rounded-full bg-[#25D366] text-white grid place-items-center shadow-glow hover:scale-110 transition-transform animate-pulse-soft"
+    className="fixed bottom-16 right-6 z-30 h-14 w-14 rounded-full bg-[#25D366] text-white grid place-items-center shadow-glow hover:scale-110 transition-transform animate-pulse-soft"
   >
     <MessageCircle className="h-7 w-7" />
     <span className="absolute inset-0 rounded-full bg-[#25D366] animate-ping opacity-30" />

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Menu, X, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import logo from "@/assets/srijanivf_logoNew.webp"
 
 const links = [
   { href: "#home", label: "Home" },
@@ -29,12 +30,13 @@ const Navbar = () => {
       }`}
     >
       <nav className="container mx-auto flex items-center justify-between py-4">
-        <a href="#home" className="flex items-center gap-2">
-          <div className="h-10 w-10 rounded-2xl gradient-primary grid place-items-center text-primary-foreground font-display font-bold text-lg shadow-soft">
-            S
-          </div>
-          <span className="font-display text-xl font-semibold">Srijan<span className="text-primary">IVF</span></span>
-        </a>
+<a href="#home" className="flex items-center">
+  <img
+    src={logo}
+    alt="Srijan IVF"
+    className="h-10 sm:h-12 w-auto object-contain"
+  />
+</a>
 
         <ul className="hidden lg:flex items-center gap-8">
           {links.map((l) => (
