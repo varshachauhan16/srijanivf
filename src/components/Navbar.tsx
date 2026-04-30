@@ -50,8 +50,8 @@ const Navbar = () => {
         </ul>
 
         <div className="hidden lg:flex items-center gap-3">
-          <a href="tel:+919999999999" className="flex items-center gap-2 text-sm font-semibold text-foreground hover:text-primary">
-            <Phone className="h-4 w-4" /> +91 99999 99999
+          <a href="tel:+918851762433" className="flex items-center gap-2 text-sm font-semibold text-foreground hover:text-primary">
+            <Phone className="h-4 w-4" /> +91 8851762433
           </a>
           <Button variant="cta" size="sm" asChild>
             <a href="#appointment">Book Free Consultation</a>

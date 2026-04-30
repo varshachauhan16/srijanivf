@@ -1,95 +1,113 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { X, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 
 const STORAGE_KEY = "lead_submitted_time";
-const CLOSE_KEY = "lead_closed_time";
-
-const FIFTEEN_MIN = 15 * 60 * 1000;
 const ONE_DAY = 24 * 60 * 60 * 1000;
+const RESHOW_DELAY = 15 * 1000; // 15 seconds
+
+type FormState = { name: string; phone: string };
+type FormErrors = Partial<Record<keyof FormState, string>>;
 
 const LeadPopup = () => {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [form, setForm] = useState<FormState>({ name: "", phone: "" });
+  const [errors, setErrors] = useState<FormErrors>({});
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const { toast } = useToast();
 
-  // ✅ POPUP LOGIC
+  const scheduleReshow = () => {
+    if (timerRef.current) clearTimeout(timerRef.current);
+    timerRef.current = setTimeout(() => setOpen(true), RESHOW_DELAY);
+  };
+
   useEffect(() => {
     const now = Date.now();
-
     const submittedTime = Number(localStorage.getItem(STORAGE_KEY) || 0);
-    const closedTime = Number(localStorage.getItem(CLOSE_KEY) || 0);
 
-    // If submitted → block 24h
+    // Already submitted within 24h — don't show at all
     if (submittedTime && now - submittedTime < ONE_DAY) return;
 
-    // If closed → wait 15 min
-    if (closedTime && now - closedTime < FIFTEEN_MIN) return;
-
-    // Show popup after small delay (better UX)
+    // First show after 3s
     const timer = setTimeout(() => setOpen(true), 3000);
-
-    return () => clearTimeout(timer);
+    return () => {
+      clearTimeout(timer);
+      if (timerRef.current) clearTimeout(timerRef.current);
+    };
   }, []);
 
-  // ✅ CLOSE
+  // ── Close: schedule reshow after 15s ──────────────────────────────────
   const handleClose = () => {
-    localStorage.setItem(CLOSE_KEY, Date.now().toString());
     setOpen(false);
+    setErrors({});
+    scheduleReshow();
   };
 
-  // ✅ VALIDATION
-  const validate = (name, phone) => {
-    if (!name || name.length < 2) {
-      return "Name must be at least 2 characters";
+  // ── Name: only letters & spaces ───────────────────────────────────────
+  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const val = e.target.value;
+    if (/^[a-zA-Z\s]*$/.test(val)) {
+      setForm((prev) => ({ ...prev, name: val }));
+      setErrors((prev) => ({ ...prev, name: "" }));
     }
-
-    if (name.length > 50) {
-      return "Name is too long";
-    }
-
-    if (!/^[a-zA-Z\s]+$/.test(name)) {
-      return "Name should contain only letters";
-    }
-
-    if (!phone) {
-      return "Phone number is required";
-    }
-
-    if (!/^[6-9]\d{9}$/.test(phone)) {
-      return "Enter valid 10-digit Indian phone number";
-    }
-
-    return null;
   };
 
-  // ✅ SUBMIT
-  const onSubmit = (e) => {
+  // ── Phone: only digits, max 10 ────────────────────────────────────────
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const val = e.target.value.replace(/\D/g, "").slice(0, 10);
+    setForm((prev) => ({ ...prev, phone: val }));
+    setErrors((prev) => ({ ...prev, phone: "" }));
+  };
+
+  // ── Validate ──────────────────────────────────────────────────────────
+  const validate = (): FormErrors => {
+    const newErrors: FormErrors = {};
+
+    if (!form.name.trim()) {
+      newErrors.name = "Name is required";
+    } else if (form.name.trim().length < 2) {
+      newErrors.name = "Name must be at least 2 characters";
+    }
+
+    if (!form.phone) {
+      newErrors.phone = "Phone number is required";
+    } else if (form.phone.length !== 10) {
+      newErrors.phone = "Phone number must be exactly 10 digits";
+    } else if (!/^[789]/.test(form.phone)) {
+      newErrors.phone = "Phone number must start with 7, 8, or 9";
+    }
+
+    return newErrors;
+  };
+
+  // ── Submit ────────────────────────────────────────────────────────────
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    const newErrors = validate();
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
+
     setLoading(true);
 
-    const fd = new FormData(e.currentTarget);
-    const name = String(fd.get("name") || "").trim();
-    const phone = String(fd.get("phone") || "").trim();
-
-    const error = validate(name, phone);
-
-    if (error) {
-      setLoading(false);
-      return toast({ title: error });
-    }
-
-    // Save submission time
+    // Cancel any pending reshow — form submitted successfully
+    if (timerRef.current) clearTimeout(timerRef.current);
     localStorage.setItem(STORAGE_KEY, Date.now().toString());
 
     toast({ title: "Submitted successfully 🎉" });
 
     setTimeout(() => {
       setOpen(false);
+      setLoading(false);
       window.location.href = "/thank-you";
     }, 800);
   };
+
+  const ErrMsg = ({ msg }: { msg?: string }) =>
+    msg ? <p className="text-[11px] text-red-500 mt-0.5 ml-1">{msg}</p> : null;
 
   if (!open) return null;
 
@@ -109,35 +127,43 @@ const LeadPopup = () => {
         <div className="p-6 text-white" style={{ backgroundColor: "#e1658a" }}>
           <div className="flex items-center gap-2">
             <Heart className="h-5 w-5" />
-            <span className="text-xs uppercase font-semibold">
-              Limited Slots
-            </span>
+            <span className="text-xs uppercase font-semibold">Limited Slots</span>
           </div>
-
-          <h3 className="mt-3 text-2xl font-semibold">
-            Get a Free IVF Consultation
-          </h3>
-
-          <p className="text-sm opacity-90 mt-1">
-            Speak with expert — No cost, No commitment.
-          </p>
+          <h3 className="mt-3 text-2xl font-semibold">Get a Free IVF Consultation</h3>
+          <p className="text-sm opacity-90 mt-1">Speak with expert — No cost, No commitment.</p>
         </div>
 
         {/* Form */}
-        <form onSubmit={onSubmit} className="p-6 space-y-3">
-          <input
-            name="name"
-            placeholder="Your name"
-            className="w-full px-4 py-3 rounded-xl border focus:ring-2 focus:ring-pink-400 outline-none"
-          />
+        <form onSubmit={handleSubmit} noValidate className="p-6 space-y-3">
 
-          <input
-            name="phone"
-            placeholder="Phone number"
-            className="w-full px-4 py-3 rounded-xl border focus:ring-2 focus:ring-pink-400 outline-none"
-          />
+          {/* Name */}
+          <div>
+            <input
+              value={form.name}
+              onChange={handleNameChange}
+              placeholder="Your name"
+              className={`w-full px-4 py-3 rounded-xl border outline-none transition focus:ring-2
+                ${errors.name ? "border-red-400 focus:ring-red-200" : "focus:ring-pink-200 focus:border-pink-400"}`}
+            />
+            <ErrMsg msg={errors.name} />
+          </div>
 
-          <select className="w-full px-4 py-3 rounded-xl border">
+          {/* Phone */}
+          <div>
+            <input
+              value={form.phone}
+              onChange={handlePhoneChange}
+              placeholder="Phone number"
+              inputMode="numeric"
+              maxLength={10}
+              className={`w-full px-4 py-3 rounded-xl border outline-none transition focus:ring-2
+                ${errors.phone ? "border-red-400 focus:ring-red-200" : "focus:ring-pink-200 focus:border-pink-400"}`}
+            />
+            <ErrMsg msg={errors.phone} />
+          </div>
+
+          {/* Treatment */}
+          <select className="w-full px-4 py-3 rounded-xl border outline-none focus:ring-2 focus:ring-pink-200 focus:border-pink-400 transition">
             <option>Select treatment</option>
             <option>IVF</option>
             <option>IUI</option>
@@ -145,17 +171,15 @@ const LeadPopup = () => {
           </select>
 
           <Button
+            type="submit"
             disabled={loading}
             className="w-full bg-[#e1658a] text-white hover:opacity-90"
           >
             {loading ? "Submitting..." : "Get Free Consultation"}
           </Button>
 
-          <p className="text-xs text-center text-gray-400">
-            100% confidential
-          </p>
+          <p className="text-xs text-center text-gray-400">100% confidential</p>
         </form>
-
       </div>
     </div>
   );
