@@ -11,12 +11,7 @@ const Hero = () => {
     <>
       {showPopup && <LeadPopup onClose={() => setShowPopup(false)} />}
 
-      {/* ══════════════════════════════════════════
-          MOBILE LAYOUT (hidden on lg+)
-      ══════════════════════════════════════════ */}
-      <section className="block lg:hidden relative overflow-hidden bg-white pt-16">
-
-        {/* Banner image */}
+      <section className="block lg:hidden relative overflow-hidden bg-white py-16">
         <div className="relative w-full h-[260px] overflow-hidden">
           <img
             src={heroImg}
@@ -24,8 +19,6 @@ const Hero = () => {
             className="w-full h-full object-cover object-top"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
-
-          {/* Trust pill on image */}
           <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-1.5 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1.5 shadow-sm">
             <span className="h-2 w-2 rounded-full bg-primary animate-pulse" />
             <span className="text-[11px] font-semibold text-primary whitespace-nowrap">
@@ -33,9 +26,6 @@ const Hero = () => {
             </span>
           </div>
         </div>
-
-        {/* Form card */}
-        
         <div className="px-4 -mt-4 relative z-10">
           <div className="bg-white rounded-2xl shadow-lg border border-pink-100 p-5">
             <h2 className="text-base font-bold text-gray-900 mb-0.5">

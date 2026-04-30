@@ -9,7 +9,7 @@ const stats = [
 ];
 
 const About = () => (
-  <section id="about" className="py-24 gradient-soft">
+  <section id="about" className="pb-10 gradient-soft">
     <div className="container mx-auto grid lg:grid-cols-2 gap-16 items-center">
       <div>
         <span className="text-sm uppercase tracking-[0.2em] text-primary font-semibold">
@@ -22,7 +22,6 @@ const About = () => (
             Your Trusted Partner for Fertility in Delhi
           </span>
         </h2>
-
         <p className="mt-6 text-muted-foreground leading-relaxed">
           Delhi couples seeking to build their families, find hope at Srijan IVF.
           We are a leading fertility clinic offering advanced procedures like IVF,

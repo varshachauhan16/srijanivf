@@ -10,6 +10,7 @@ import Testimonials from "@/components/Testimonials";
 import Blog from "@/components/Blog";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import CallButton from "@/components/callbtn";
 import LeadPopup from "@/components/LeadPopup";
 import Benefits from "@/components/Benefits";
 import WhyChoose from "@/components/whyus";
@@ -31,6 +32,7 @@ const Index = () => (
     <Appointment />
     <Footer />
     <WhatsAppButton />
+    <CallButton />
     <LeadPopup />
   </main>
 );

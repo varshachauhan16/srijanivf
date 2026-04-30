@@ -19,32 +19,33 @@ const benefits = [
 
 const Benefits = () => {
   return (
-    <section className="py-20 bg-pink-50">
-      <div className="container mx-auto px-6 grid lg:grid-cols-2 gap-14 items-center max-w-6xl">
+    <section className="py-16 sm:py-20 bg-pink-50">
+      <div className="container mx-auto px-4 sm:px-6 grid lg:grid-cols-2 gap-10 lg:gap-14 items-center max-w-6xl">
 
         {/* LEFT — Image */}
-        <div className="flex justify-center relative">
+        <div className="flex justify-center relative order-1 lg:order-none">
           <img
             src={benefitsImg}
             alt="Benefits"
-            className="w-[320px] sm:w-[360px] md:w-[400px] object-cover rounded-[140px_140px_140px_48px] border-[7px] border-pink-200"
+            className="w-full max-w-[260px] sm:max-w-[320px] md:max-w-[380px] object-cover rounded-[120px_120px_120px_40px] border-[6px] sm:border-[7px] border-pink-200"
           />
-          <div className="absolute bottom-8 left-6 bg-pink-600 text-white text-sm font-medium px-5 py-2.5 rounded-full shadow-md">
+
+          <div className="absolute bottom-4 left-4 sm:bottom-8 sm:left-6 bg-pink-600 text-white text-xs sm:text-sm font-medium px-4 py-2 rounded-full shadow-md">
             Trusted by 10,000+ Families
           </div>
         </div>
 
-        {/* RIGHT — Cards only */}
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 order-2 lg:order-none">
           {benefits.map((item, index) => (
             <div
               key={index}
-              className="bg-white border border-pink-100 rounded-2xl px-5 py-4 flex items-center gap-4 hover:shadow-lg hover:shadow-pink-100 hover:border-pink-300 transition-all duration-200"
+              className="bg-white border border-pink-100 rounded-xl sm:rounded-2xl px-4 sm:px-5 py-3 sm:py-4 flex items-center gap-3 sm:gap-4 hover:shadow-lg hover:shadow-pink-100 hover:border-pink-300 transition-all duration-200"
             >
-              <div className="w-12 h-12 rounded-xl bg-pink-50 flex items-center justify-center shrink-0">
-                <item.icon className="w-6 h-6 text-pink-600" />
+              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-pink-50 flex items-center justify-center shrink-0">
+                <item.icon className="w-5 h-5 sm:w-6 sm:h-6 text-pink-600" />
               </div>
-              <span className="text-sm md:text-base font-semibold text-pink-900 leading-snug">
+
+              <span className="text-sm sm:text-base font-semibold text-pink-900 leading-snug">
                 {item.title}
               </span>
             </div>
