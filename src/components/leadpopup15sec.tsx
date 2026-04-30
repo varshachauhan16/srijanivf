@@ -5,16 +5,12 @@ import { useToast } from "@/hooks/use-toast";
 
 const STORAGE_KEY = "lead_submitted_time";
 const ONE_DAY = 24 * 60 * 60 * 1000;
-const RESHOW_DELAY = 15 * 60 * 1000;
+const RESHOW_DELAY = 15 * 1000; // 15 seconds
 
 type FormState = { name: string; phone: string };
 type FormErrors = Partial<Record<keyof FormState, string>>;
 
-interface LeadPopupProps {
-  onClose?: () => void; // optional — Hero button se aaye tab use hoga
-}
-
-const LeadPopup = ({ onClose }: LeadPopupProps) => {
+const LeadPopup = () => {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState<FormState>({ name: "", phone: "" });
@@ -28,37 +24,28 @@ const LeadPopup = ({ onClose }: LeadPopupProps) => {
   };
 
   useEffect(() => {
-    // Agar onClose prop hai → Hero button se trigger hua → seedha open karo
-    if (onClose) {
-      setOpen(true);
-      return;
-    }
-
-    // Auto-popup logic (no onClose prop = auto mode)
     const now = Date.now();
     const submittedTime = Number(localStorage.getItem(STORAGE_KEY) || 0);
+
+    // Already submitted within 24h — don't show at all
     if (submittedTime && now - submittedTime < ONE_DAY) return;
 
+    // First show after 3s
     const timer = setTimeout(() => setOpen(true), 3000);
     return () => {
       clearTimeout(timer);
       if (timerRef.current) clearTimeout(timerRef.current);
     };
-  }, [onClose]);
+  }, []);
 
+  // ── Close: schedule reshow after 15s ──────────────────────────────────
   const handleClose = () => {
     setOpen(false);
     setErrors({});
-
-    if (onClose) {
-      // Button se khula tha — parent ko batao, reshow mat karo
-      onClose();
-    } else {
-      // Auto popup tha — 15s baad reshow karo
-      scheduleReshow();
-    }
+    scheduleReshow();
   };
 
+  // ── Name: only letters & spaces ───────────────────────────────────────
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const val = e.target.value;
     if (/^[a-zA-Z\s]*$/.test(val)) {
@@ -67,22 +54,35 @@ const LeadPopup = ({ onClose }: LeadPopupProps) => {
     }
   };
 
+  // ── Phone: only digits, max 10 ────────────────────────────────────────
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const val = e.target.value.replace(/\D/g, "").slice(0, 10);
     setForm((prev) => ({ ...prev, phone: val }));
     setErrors((prev) => ({ ...prev, phone: "" }));
   };
 
+  // ── Validate ──────────────────────────────────────────────────────────
   const validate = (): FormErrors => {
     const newErrors: FormErrors = {};
-    if (!form.name.trim()) newErrors.name = "Name is required";
-    else if (form.name.trim().length < 2) newErrors.name = "Name must be at least 2 characters";
-    if (!form.phone) newErrors.phone = "Phone number is required";
-    else if (form.phone.length !== 10) newErrors.phone = "Phone number must be exactly 10 digits";
-    else if (!/^[789]/.test(form.phone)) newErrors.phone = "Phone number must start with 7, 8, or 9";
+
+    if (!form.name.trim()) {
+      newErrors.name = "Name is required";
+    } else if (form.name.trim().length < 2) {
+      newErrors.name = "Name must be at least 2 characters";
+    }
+
+    if (!form.phone) {
+      newErrors.phone = "Phone number is required";
+    } else if (form.phone.length !== 10) {
+      newErrors.phone = "Phone number must be exactly 10 digits";
+    } else if (!/^[789]/.test(form.phone)) {
+      newErrors.phone = "Phone number must start with 7, 8, or 9";
+    }
+
     return newErrors;
   };
 
+  // ── Submit ────────────────────────────────────────────────────────────
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const newErrors = validate();
@@ -92,6 +92,8 @@ const LeadPopup = ({ onClose }: LeadPopupProps) => {
     }
 
     setLoading(true);
+
+    // Cancel any pending reshow — form submitted successfully
     if (timerRef.current) clearTimeout(timerRef.current);
     localStorage.setItem(STORAGE_KEY, Date.now().toString());
 
@@ -100,12 +102,11 @@ const LeadPopup = ({ onClose }: LeadPopupProps) => {
     setTimeout(() => {
       setOpen(false);
       setLoading(false);
-      if (onClose) onClose();
       window.location.href = "/thank-you";
     }, 800);
   };
 
-  const ErrMsg = ({ msg }: { msg?: string }): React.ReactElement | null =>
+  const ErrMsg = ({ msg }: { msg?: string }) =>
     msg ? <p className="text-[11px] text-red-500 mt-0.5 ml-1">{msg}</p> : null;
 
   if (!open) return null;
@@ -114,6 +115,7 @@ const LeadPopup = ({ onClose }: LeadPopupProps) => {
     <div className="fixed inset-0 z-50 grid place-items-center bg-black/50 backdrop-blur-sm p-4">
       <div className="relative w-full max-w-md bg-white rounded-3xl shadow-xl overflow-hidden">
 
+        {/* Close */}
         <button
           onClick={handleClose}
           className="absolute top-4 right-4 h-9 w-9 rounded-full bg-gray-100 hover:bg-gray-200 grid place-items-center"
@@ -121,6 +123,7 @@ const LeadPopup = ({ onClose }: LeadPopupProps) => {
           <X className="h-4 w-4" />
         </button>
 
+        {/* Header */}
         <div className="p-6 text-white" style={{ backgroundColor: "#e1658a" }}>
           <div className="flex items-center gap-2">
             <Heart className="h-5 w-5" />
@@ -130,20 +133,22 @@ const LeadPopup = ({ onClose }: LeadPopupProps) => {
           <p className="text-sm opacity-90 mt-1">Speak with expert — No cost, No commitment.</p>
         </div>
 
+        {/* Form */}
         <form onSubmit={handleSubmit} noValidate className="p-6 space-y-3">
 
+          {/* Name */}
           <div>
             <input
               value={form.name}
               onChange={handleNameChange}
               placeholder="Your name"
-              className={`w-full px-4 py-3 rounded-xl border outline-none transition focus:ring-2 ${
-                errors.name ? "border-red-400 focus:ring-red-200" : "focus:ring-pink-200 focus:border-pink-400"
-              }`}
+              className={`w-full px-4 py-3 rounded-xl border outline-none transition focus:ring-2
+                ${errors.name ? "border-red-400 focus:ring-red-200" : "focus:ring-pink-200 focus:border-pink-400"}`}
             />
             <ErrMsg msg={errors.name} />
           </div>
 
+          {/* Phone */}
           <div>
             <input
               value={form.phone}
@@ -151,13 +156,13 @@ const LeadPopup = ({ onClose }: LeadPopupProps) => {
               placeholder="Phone number"
               inputMode="numeric"
               maxLength={10}
-              className={`w-full px-4 py-3 rounded-xl border outline-none transition focus:ring-2 ${
-                errors.phone ? "border-red-400 focus:ring-red-200" : "focus:ring-pink-200 focus:border-pink-400"
-              }`}
+              className={`w-full px-4 py-3 rounded-xl border outline-none transition focus:ring-2
+                ${errors.phone ? "border-red-400 focus:ring-red-200" : "focus:ring-pink-200 focus:border-pink-400"}`}
             />
             <ErrMsg msg={errors.phone} />
           </div>
 
+          {/* Treatment */}
           <select className="w-full px-4 py-3 rounded-xl border outline-none focus:ring-2 focus:ring-pink-200 focus:border-pink-400 transition">
             <option>Select treatment</option>
             <option>IVF</option>
@@ -179,5 +184,3 @@ const LeadPopup = ({ onClose }: LeadPopupProps) => {
     </div>
   );
 };
-
-export default LeadPopup;
