@@ -2,6 +2,7 @@ import { useState } from "react";
 import { MapPin, Phone, Mail, Clock, Facebook, Instagram, Youtube, Linkedin, ArrowRight } from "lucide-react";
 import logo from "@/assets/srijanivf-footer-logo.webp";
 import LeadPopup from "@/components/LeadPopup";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   const [showPopup, setShowPopup] = useState(false);
@@ -35,19 +36,42 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Quick Links */}
-          <div>
-            <h4 className="font-semibold mb-4 text-sm">Quick Links</h4>
-            <ul className="space-y-2 text-sm text-white/80">
-              {["About", "Centres", "Doctors", "Testimonials", "Blog"].map((l) => (
-                <li key={l}>
-                  <a href={`#${l.toLowerCase()}`} className="hover:text-white transition">
-                    {l}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
+<div>
+  <h4 className="font-semibold mb-4 text-sm">Quick Links</h4>
+  <ul className="space-y-2 text-sm text-white/80">
+
+    <li>
+      <Link to="/about-us" className="hover:text-white transition">
+        About
+      </Link>
+    </li>
+
+    <li>
+      <Link to="/centres" className="hover:text-white transition">
+        Centres
+      </Link>
+    </li>
+
+    <li>
+      <Link to="/doctors" className="hover:text-white transition">
+        Doctors
+      </Link>
+    </li>
+
+    <li>
+      <Link to="/testimonials" className="hover:text-white transition">
+        Testimonials
+      </Link>
+    </li>
+
+    <li>
+      <Link to="/blog" className="hover:text-white transition">
+        Blog
+      </Link>
+    </li>
+
+  </ul>
+</div>
 
           {/* Centres */}
           <div>
