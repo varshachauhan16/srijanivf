@@ -4,8 +4,8 @@ import { Button } from "@/components/ui/button";
 import logo from "@/assets/srijanivf_logoNew.webp"
 
 const links = [
-  { href: "#home", label: "Home" },
-  { href: "#about", label: "About" },
+  { href: "/", label: "Home" },
+  { href: "/about-us", label: "About" },
   { href: "#treatments", label: "Treatments" },
   { href: "#doctors", label: "Doctors" },
   { href: "#testimonials", label: "Testimonials" },
@@ -30,7 +30,7 @@ const Navbar = () => {
       }`}
     >
       <nav className="container mx-auto flex items-center justify-between py-4">
-<a href="#home" className="flex items-center">
+<a href="/" className="flex items-center">
   <img
     src={logo}
     alt="Srijan IVF"

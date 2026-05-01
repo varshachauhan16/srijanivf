@@ -2,10 +2,10 @@ import { useState } from "react";
 import { MapPin, Phone, Mail } from "lucide-react";
 
 const locations = [
-  { title: "Delhi", desc: "Shop No.2, Khasra No. 585, Mayur Vihar Phase 1, Delhi 110091" },
-  { title: "Indirapuram", desc: "Plot No-7, Abhay Khand 1, Ghaziabad, UP 201014" },
-  { title: "Varanasi", desc: "Heiwel Hospital, NH 56, Airport Road, Varanasi" },
-  { title: "Srinagar", desc: "Sonwar Bagh, opposite Amar Singh Club, Srinagar" },
+  { title: "Delhi", desc: "Shop No.2, Khasra No. 585, kalyan Vyas, 202/1, Khichripur Rd, Mayur Vihar Phase I, Kalyanvas, Kalyan Puri, Delhi, 110091." },
+  { title: "Indirapuram", desc: "Shop No.2, Khasra No. 585, kalyan Vyas, 202/1, Khichripur Rd, Mayur Vihar Phase I, Kalyanvas, Kalyan Puri, Delhi, 110091." },
+  { title: "Varanasi", desc: "Heiwel Hospital, National Highway 56, Airport Road, near Sant Atulanand, Gilat Bazar, Chotta Chuppepur, Varanasi, Uttar Pradesh 221002." },
+  { title: "Srinagar", desc: "The Kidney and Urological Diseases Research Centre, Sonwar Bagh, opposite Amar Singh Club, Srinagar 190001." },
 ];
 
 const today = new Date().toISOString().split("T")[0];

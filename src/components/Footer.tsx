@@ -67,7 +67,7 @@ const Footer = () => {
             <ul className="space-y-3 text-sm text-white/80">
               <li className="flex gap-3">
                 <MapPin className="h-4 w-4 mt-0.5 text-white shrink-0" />
-                Mayur Vihar Phase I, Delhi - 110091
+                Shop No.2, Khasra No. 585, kalyan Vyas, 202/1, Khichripur Rd, Mayur Vihar Phase I, Kalyanvas, Kalyan Puri, Delhi, 110091
               </li>
               <li className="flex gap-3">
                 <Phone className="h-4 w-4 mt-0.5 text-white shrink-0" />
