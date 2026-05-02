@@ -22,3 +22,14 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+# Puppeteer / Cache
+.cache/
+.puppeteer/
+
+# Environment
+.env
+.env.*
+
+# Build & misc
+build/
+coverage/
