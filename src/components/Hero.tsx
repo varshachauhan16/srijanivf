@@ -74,7 +74,7 @@ const Hero = () => {
             </span>
             <h1 className="mt-6 font-display text-5xl md:text-6xl lg:text-7xl font-semibold leading-[1.05]">
               Your Parenthood <br />
-              Journey <span className="text-gradient italic">Starts Here</span>
+              Journey <span className="text-gradient not-italic">Starts Here</span>
             </h1>
             <p className="mt-6 text-lg text-muted-foreground max-w-xl">
               Compassionate, world-class fertility care backed by 20+ years of experience
@@ -192,6 +192,7 @@ const FormFields = ({ form, errors, onName, onPhone, onTreatment }: FormFieldsPr
     <select
       value={form.treatment}
       onChange={onTreatment}
+      aria-label="Select Treatment"
       className="w-full px-3 py-2 rounded-xl border border-input bg-background text-sm mb-3 outline-none focus:border-primary transition"
     >
       <option value="">Select Treatment</option>

@@ -16,7 +16,7 @@ const WhyChooseUs = () => (
       <div className="text-center max-w-2xl mx-auto">
         <span className="text-sm uppercase tracking-[0.2em] text-primary font-semibold">Why Choose Us</span>
         <h2 className="mt-4 font-display text-4xl md:text-5xl font-semibold">
-          A different kind of <span className="text-gradient italic">fertility care</span>
+          A different kind of <span className="text-gradient not-italic">fertility care</span>
         </h2>
       </div>
 

@@ -54,7 +54,7 @@ const Treatments = () => {
         {/* Heading */}
         <div className="text-center max-w-2xl mx-auto">
           <h2 className="text-2xl sm:text-4xl md:text-5xl font-semibold">
-            Our <span className="text-pink-500 italic">Treatments</span>
+            Our <span className="text-pink-500 not-italic">Treatments</span>
           </h2>
           <p className="mt-3 sm:mt-4 text-sm sm:text-base text-gray-500">
             Personalized care designed for your journey to parenthood.

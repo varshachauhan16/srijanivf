@@ -28,7 +28,7 @@ const Testimonials = () => {
         <div className="text-center">
           <span className="text-sm uppercase tracking-[0.2em] text-primary font-semibold">Stories of Hope</span>
           <h2 className="mt-4 font-display text-4xl md:text-5xl font-semibold">
-            From our <span className="text-gradient italic">families</span>
+            From our <span className="text-gradient not-italic">families</span>
           </h2>
         </div>
 
@@ -37,7 +37,7 @@ const Testimonials = () => {
           <div className="flex justify-center gap-1 mb-5">
             {[...Array(5)].map((_, k) => <Star key={k} className="h-5 w-5 fill-primary text-primary" />)}
           </div>
-          <p className="text-center font-display text-2xl md:text-3xl leading-relaxed text-foreground/90 italic">
+          <p className="text-center font-display text-2xl md:text-3xl leading-relaxed text-foreground/90 not-italic">
             “{r.text}”
           </p>
           <div className="text-center mt-6">

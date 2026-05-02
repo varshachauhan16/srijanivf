@@ -18,7 +18,7 @@ const About = () => (
 
         <h2 className="mt-4 font-display text-4xl md:text-5xl font-semibold leading-tight">
           Srijan IVF:{" "}
-          <span className="text-gradient italic">
+          <span className="text-gradient not-italic">
             Your Trusted Partner for Fertility in Delhi
           </span>
         </h2>
