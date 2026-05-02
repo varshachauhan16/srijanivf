@@ -116,6 +116,7 @@ const LeadPopup = ({ onClose }: LeadPopupProps) => {
 
         <button
           onClick={handleClose}
+          aria-label="Close"
           className="absolute top-4 right-4 h-9 w-9 rounded-full bg-gray-100 hover:bg-gray-200 grid place-items-center"
         >
           <X className="h-4 w-4" />
@@ -158,7 +159,10 @@ const LeadPopup = ({ onClose }: LeadPopupProps) => {
             <ErrMsg msg={errors.phone} />
           </div>
 
-          <select className="w-full px-4 py-3 rounded-xl border outline-none focus:ring-2 focus:ring-pink-200 focus:border-pink-400 transition">
+          <select 
+            aria-label="Select treatment"
+            className="w-full px-4 py-3 rounded-xl border outline-none focus:ring-2 focus:ring-pink-200 focus:border-pink-400 transition"
+          >
             <option>Select treatment</option>
             <option>IVF</option>
             <option>IUI</option>
