@@ -8,7 +8,9 @@ import NotFound from "./pages/NotFound.tsx";
 import ThankYou from "./pages/ThankYou.tsx";
 import About from "./pages/about-us.tsx";
 import PallaviSingh from "./pages/doctor/pallavi-singh.tsx";
-// import SantoshArjun from "./pages/doctor/santosh-arjun.tsx";
+import Santoshkumar from "./pages/doctor/santosh-kumar.tsx";
+import Centre from "./pages/centre.tsx";
+import Testimonials from "./pages/testimonials.tsx";
 
 const queryClient = new QueryClient();
 
@@ -24,7 +26,9 @@ const App = () => (
           <Route path="/about-us" element={<About />} />
           <Route path="*" element={<NotFound />} />
           <Route path="/doctor/pallavi-singh" element={<PallaviSingh />} />
-          {/* <Route path="/doctor/santosh-arjun" element={<SantoshArjun />} /> */}
+          <Route path="/doctor/santosh-kumar" element={<Santoshkumar />} />
+          <Route path="/centre" element={<Centre/>} />
+          <Route path="/testimonials" element={<Testimonials />} />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>

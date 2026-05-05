@@ -9,7 +9,8 @@ const links = [
   { href: "/about-us", label: "About" },
   { href: "#treatments", label: "Treatments" },
   { href: "doctors", label: "Doctors" }, // special handling
-  { href: "#testimonials", label: "Testimonials" },
+  { href: "/centre", label: "Centre" },  // ✅ NEW ADDED
+  { href: "/testimonials", label: "Testimonials" },
   { href: "#blog", label: "Blog" },
   { href: "#contact", label: "Contact" },
 ];
@@ -48,31 +49,13 @@ const Navbar = () => {
           {links.map((l) => (
             <li key={l.label} className="relative group">
 
-              {/* NORMAL LINKS */}
-              {l.label !== "Doctors" ? (
-                l.href.startsWith("/") ? (
-                  <Link
-                    to={l.href}
-                    className="text-sm font-medium text-foreground/75 hover:text-primary transition-colors relative after:content-[''] after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-0 after:bg-primary after:transition-all hover:after:w-full"
-                  >
-                    {l.label}
-                  </Link>
-                ) : (
-                  <a
-                    href={l.href}
-                    className="text-sm font-medium text-foreground/75 hover:text-primary transition-colors relative after:content-[''] after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-0 after:bg-primary after:transition-all hover:after:w-full"
-                  >
-                    {l.label}
-                  </a>
-                )
-              ) : (
+              {/* DOCTORS DROPDOWN */}
+              {l.label === "Doctors" ? (
                 <>
-                  {/* DOCTORS BUTTON */}
                   <span className="text-sm font-medium text-foreground/75 hover:text-primary cursor-pointer">
                     Doctors
                   </span>
 
-                  {/* DROPDOWN */}
                   <div className="absolute left-0 top-full mt-2 w-60 bg-white border border-pink-100 rounded-xl shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
 
                     <Link
@@ -83,7 +66,7 @@ const Navbar = () => {
                     </Link>
 
                     <Link
-                      to="/doctor/santosh-arjun"
+                      to="/doctor/santosh-kumar"
                       className="block px-4 py-3 text-sm text-gray-700 hover:bg-pink-50 hover:text-pink-600 rounded-b-xl"
                     >
                       Dr. Santosh Kumar Arjun
@@ -91,6 +74,20 @@ const Navbar = () => {
 
                   </div>
                 </>
+              ) : l.href.startsWith("/") ? (
+                <Link
+                  to={l.href}
+                  className="text-sm font-medium text-foreground/75 hover:text-primary transition-colors relative after:content-[''] after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-0 after:bg-primary after:transition-all hover:after:w-full"
+                >
+                  {l.label}
+                </Link>
+              ) : (
+                <a
+                  href={l.href}
+                  className="text-sm font-medium text-foreground/75 hover:text-primary transition-colors relative after:content-[''] after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-0 after:bg-primary after:transition-all hover:after:w-full"
+                >
+                  {l.label}
+                </a>
               )}
             </li>
           ))}
@@ -142,7 +139,7 @@ const Navbar = () => {
               </a>
             </li>
 
-            {/* DOCTORS LIST (MOBILE) */}
+            {/* DOCTORS */}
             <li className="px-3 pt-2 text-xs text-gray-400">Doctors</li>
 
             <li>
@@ -152,8 +149,20 @@ const Navbar = () => {
             </li>
 
             <li>
-              <Link to="/doctor/santosh-arjun" onClick={() => setOpen(false)} className="block py-2 px-4">
+              <Link to="/doctor/santosh-kumar" onClick={() => setOpen(false)} className="block py-2 px-4">
                 Dr. Santosh Kumar Arjun
+              </Link>
+            </li>
+
+            {/* ✅ CENTRE ADDED */}
+            <li>
+              <Link to="/centre" onClick={() => setOpen(false)} className="block py-3 px-3">
+                Centre
+              </Link>
+            </li>
+            <li>
+              <Link to="/testimonials" onClick={() => setOpen(false)} className="block py-3 px-3">
+                Testimonials
               </Link>
             </li>
 
