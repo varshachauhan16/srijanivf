@@ -12,7 +12,7 @@ const links = [
   { href: "/centre", label: "Centre" },  // ✅ NEW ADDED
   { href: "/testimonials", label: "Testimonials" },
   { href: "#blog", label: "Blog" },
-  { href: "#contact", label: "Contact" },
+  { href: "/contact-us", label: "Contact" },
 ];
 
 const Navbar = () => {
@@ -167,7 +167,7 @@ const Navbar = () => {
             </li>
 
             <li>
-              <a href="#contact" onClick={() => setOpen(false)} className="block py-3 px-3">
+              <a href="/contact-us" onClick={() => setOpen(false)} className="block py-3 px-3">
                 Contact
               </a>
             </li>
