@@ -167,7 +167,7 @@ const LeadPopup = () => {
             <option>Select treatment</option>
             <option>IVF</option>
             <option>IUI</option>
-            <option>ICSI</option>
+            <option>Altruistic Surrogacy</option>
           </select>
 
           <Button

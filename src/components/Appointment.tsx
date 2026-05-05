@@ -229,8 +229,7 @@ const Appointment = () => {
                     <option value="">-- Choose Treatment --</option>
                     <option>IVF</option>
                     <option>IUI</option>
-                    <option>ICSI</option>
-                    <option>PCOS</option>
+                    <option>Altruistic Surrogacy</option>
                   </select>
                 </div>
               </div>
