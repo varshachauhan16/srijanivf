@@ -198,8 +198,7 @@ const FormFields = ({ form, errors, onName, onPhone, onTreatment }: FormFieldsPr
       <option value="">Select Treatment</option>
       <option>IVF</option>
       <option>IUI</option>
-      <option>ICSI</option>
-      <option>Egg Freezing</option>
+      <option>Altruistic Surrogacy</option>
     </select>
 
     <Button variant="cta" size="sm" className="w-full">
