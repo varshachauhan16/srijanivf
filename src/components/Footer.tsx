@@ -23,18 +23,60 @@ const Footer = () => {
               Delhi couples seeking to build their families find hope at Srijan IVF.
               We offer advanced treatments like IVF, IUI, ICSI and more.
             </p>
-            <div className="mt-5 flex gap-3">
-              {[Facebook, Instagram, Youtube, Linkedin].map((I, i) => (
-                <a
-                  key={i}
-                  href="#"
-                  className="h-10 w-10 rounded-full bg-white/20 hover:bg-white hover:text-[#e1658a] grid place-items-center transition"
-                >
-                  <I className="h-4 w-4" />
-                </a>
-              ))}
-            </div>
-          </div>
+<div className="mt-5 flex gap-3">
+
+  {/* Facebook */}
+  <a
+    href="https://www.facebook.com/srijanivfcentre"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="h-10 w-10 rounded-full bg-white/20 hover:bg-white hover:text-[#e1658a] grid place-items-center transition"
+  >
+    <Facebook className="h-4 w-4" />
+  </a>
+
+  {/* Instagram */}
+  <a
+    href="https://www.instagram.com/srijan.ivf/"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="h-10 w-10 rounded-full bg-white/20 hover:bg-white hover:text-[#e1658a] grid place-items-center transition"
+  >
+    <Instagram className="h-4 w-4" />
+  </a>
+
+  {/* YouTube */}
+  <a
+    href="https://www.youtube.com/@srijanfertilitycentre"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="h-10 w-10 rounded-full bg-white/20 hover:bg-white hover:text-[#e1658a] grid place-items-center transition"
+  >
+    <Youtube className="h-4 w-4" />
+  </a>
+
+  {/* Twitter (X) */}
+  <a
+    href="https://x.com/srijan_ivf"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="h-10 w-10 rounded-full bg-white/20 hover:bg-white hover:text-[#e1658a] grid place-items-center transition"
+  >
+    <span className="text-xs font-bold">X</span>
+  </a>
+
+  {/* LinkedIn */}
+  <a
+    href="https://www.linkedin.com/in/srijan-ivf"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="h-10 w-10 rounded-full bg-white/20 hover:bg-white hover:text-[#e1658a] grid place-items-center transition"
+  >
+    <Linkedin className="h-4 w-4" />
+  </a>
+
+</div>
+</div>
 
 <div>
   <h4 className="font-semibold mb-4 text-sm">Quick Links</h4>
