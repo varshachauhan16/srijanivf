@@ -11,7 +11,7 @@ const links = [
   { href: "/doctors", label: "Doctors" },
   { href: "/centre", label: "Centre" },
   { href: "/testimonials", label: "Testimonials" },
-  { href: "/blog", label: "Blog" },
+  { href: "/Blogspage", label: "Blog" },
   { href: "/contact-us", label: "Contact Us" },
 ];
 
@@ -27,11 +27,10 @@ const Navbar = () => {
 
   return (
     <header
-      className={`fixed top-0 inset-x-0 z-40 transition-all duration-300 ${
-        scrolled
+      className={`fixed top-0 inset-x-0 z-40 transition-all duration-300 ${scrolled
           ? "bg-background/85 backdrop-blur-lg shadow-soft"
           : "bg-transparent"
-      }`}
+        }`}
     >
       <nav className="container mx-auto flex items-center justify-between py-4">
         <Link to="/" className="flex items-center">
@@ -91,14 +90,15 @@ const Navbar = () => {
         <div className="hidden lg:flex items-center gap-3">
           <a
             href="tel:+918851762433"
-            className="flex items-center gap-2 text-sm font-semibold text-foreground hover:text-primary"
+            className="flex items-center gap-2 bg-pink-600 hover:bg-pink-700 text-white px-5 py-2.5 rounded-full text-sm font-semibold shadow-md transition-all duration-300"
           >
-            <Phone className="h-4 w-4" /> +91 8851762433
+            <Phone className="h-4 w-4" />
+            +91 8851762433
           </a>
 
-          <Button variant="cta" size="sm" asChild>
+          {/* <Button variant="cta" size="sm" asChild>
             <a href="#appointment">Book Free Consultation</a>
-          </Button>
+          </Button> */}
         </div>
 
         <button
@@ -163,13 +163,13 @@ const Navbar = () => {
               </Link>
             </li>
 
-            <li className="pt-2">
+            {/* <li className="pt-2">
               <Button variant="cta" className="w-full" asChild>
                 <Link to="/appointment" onClick={() => setOpen(false)}>
                   Book Free Consultation
                 </Link  >
               </Button>
-            </li>
+            </li> */}
 
           </ul>
         </div>
