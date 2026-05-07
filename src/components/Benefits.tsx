@@ -22,7 +22,6 @@ const Benefits = () => {
     <section className="py-16 sm:py-20 bg-pink-50">
       <div className="container mx-auto px-4 sm:px-6 grid lg:grid-cols-2 gap-10 lg:gap-14 items-center max-w-6xl">
 
-        {/* LEFT — Image */}
         <div className="flex justify-center relative order-1 lg:order-none">
           <img
             src={benefitsImg}

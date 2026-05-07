@@ -4,7 +4,7 @@ import Footer from "@/components/Footer";
 import Callus from "@/components/callbtn";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import bannerImg from "@/assets/About-us-banner.jpg";
-import centreImg from "@/assets/our_center.webp"; 
+import centreImg from "@/assets/our_center.webp";
 
 const whyChoose = [
   {
@@ -61,7 +61,6 @@ const OurCentrePage = () => {
     <>
       <Navbar />
 
-      {/* Hero Banner */}
       <section className="relative w-full h-[50vh] md:h-[65vh] flex items-center justify-center text-center">
         <img
           src={bannerImg}
@@ -82,73 +81,67 @@ const OurCentrePage = () => {
         </div>
       </section>
 
-      {/* Srijan IVF — Trusted Partner Section */}
-{/* 🔹 SECTION 1 — FULL WIDTH TEXT */}
-<section className="py-12 md:py-20 px-4 md:px-6 bg-white">
-  <div className="max-w-5xl mx-auto text-center">
-    
-    <h2 className="text-2xl md:text-3xl font-bold text-pink-600 mb-3">
-      Srijan IVF: Your Trusted Partner for Fertility in Delhi
-    </h2>
-    <div className="w-14 h-1 bg-pink-500 rounded-full mx-auto mb-6" />
+      <section className="py-12 md:py-20 px-4 md:px-6 bg-white">
+        <div className="max-w-5xl mx-auto text-center">
 
-    <p className="text-gray-500 leading-relaxed text-sm md:text-base mb-4">
-      Delhi couples seeking to build their families, find hope at Srijan IVF. We are a leading fertility clinic offering advanced procedures like IVF, IUI, ICSI, Laparoscopy, Hysteroscopy, TESA/PESA, and various other treatment options tailored to your individual needs.
-    </p>
+          <h2 className="text-2xl md:text-3xl font-bold text-pink-600 mb-3">
+            Srijan IVF: Your Trusted Partner for Fertility in Delhi
+          </h2>
+          <div className="w-14 h-1 bg-pink-500 rounded-full mx-auto mb-6" />
 
-    <p className="text-gray-500 leading-relaxed text-sm md:text-base">
-      Our experienced and compassionate team of fertility specialists guides you through personalized treatment plans, maximizing your chances of achieving a successful pregnancy. Schedule a free consultation today and turn your dream of parenthood into a beautiful reality.
-    </p>
+          <p className="text-gray-500 leading-relaxed text-sm md:text-base mb-4">
+            Delhi couples seeking to build their families, find hope at Srijan IVF. We are a leading fertility clinic offering advanced procedures like IVF, IUI, ICSI, Laparoscopy, Hysteroscopy, TESA/PESA, and various other treatment options tailored to your individual needs.
+          </p>
 
-  </div>
-</section>
+          <p className="text-gray-500 leading-relaxed text-sm md:text-base">
+            Our experienced and compassionate team of fertility specialists guides you through personalized treatment plans, maximizing your chances of achieving a successful pregnancy. Schedule a free consultation today and turn your dream of parenthood into a beautiful reality.
+          </p>
+
+        </div>
+      </section>
 
 
-{/* 🔹 SECTION 2 — HEADING + TEXT + IMAGE */}
-<section className="py-12 md:py-20 px-4 md:px-6 bg-pink-50">
-  <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-10 md:gap-16 items-center">
+      <section className="py-12 md:py-20 px-4 md:px-6 bg-pink-50">
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-10 md:gap-16 items-center">
 
-    {/* TEXT */}
-    <div className="flex-1">
-      
-      <h3 className="text-xl md:text-2xl font-bold text-pink-600 mb-4">
-        Why Choose Srijan IVF for Your Fertility Journey?
-      </h3>
+          <div className="flex-1">
 
-      <p className="text-gray-500 text-sm leading-relaxed mb-5">
-        At Srijan IVF, we understand the emotional and physical challenges of infertility. We're dedicated to providing compassionate care and advanced treatments to help you achieve your dream of parenthood.
-      </p>
+            <h3 className="text-xl md:text-2xl font-bold text-pink-600 mb-4">
+              Why Choose Srijan IVF for Your Fertility Journey?
+            </h3>
 
-      <ul className="flex flex-col gap-4 mb-6">
-        {whyChoose.map((item, i) => (
-          <li key={i} className="flex items-start gap-3">
-            <span className="w-2 h-2 rounded-full bg-gray-500 shrink-0 mt-1.5" />
-            <p className="text-gray-600 text-sm leading-relaxed">
-              <span className="font-bold text-gray-800">{item.title}</span>{" "}
-              {item.desc}
+            <p className="text-gray-500 text-sm leading-relaxed mb-5">
+              At Srijan IVF, we understand the emotional and physical challenges of infertility. We're dedicated to providing compassionate care and advanced treatments to help you achieve your dream of parenthood.
             </p>
-          </li>
-        ))}
-      </ul>
 
-      <p className="text-gray-500 text-sm leading-relaxed">
-        Srijan IVF isn't just a fertility clinic; we're your trusted partner on your path to parenthood.
-      </p>
-    </div>
+            <ul className="flex flex-col gap-4 mb-6">
+              {whyChoose.map((item, i) => (
+                <li key={i} className="flex items-start gap-3">
+                  <span className="w-2 h-2 rounded-full bg-gray-500 shrink-0 mt-1.5" />
+                  <p className="text-gray-600 text-sm leading-relaxed">
+                    <span className="font-bold text-gray-800">{item.title}</span>{" "}
+                    {item.desc}
+                  </p>
+                </li>
+              ))}
+            </ul>
 
-    {/* IMAGE */}
-<div className="flex-shrink-0 flex justify-center w-full md:w-1/2">
-  <img
-    src={centreImg}
-    alt="Fertility Care Illustration"
-    className="w-full max-w-[420px] md:max-w-[520px] object-contain"
-  />
-</div>
+            <p className="text-gray-500 text-sm leading-relaxed">
+              Srijan IVF isn't just a fertility clinic; we're your trusted partner on your path to parenthood.
+            </p>
+          </div>
 
-  </div>
-</section>
+          <div className="flex-shrink-0 flex justify-center w-full md:w-1/2">
+            <img
+              src={centreImg}
+              alt="Fertility Care Illustration"
+              className="w-full max-w-[420px] md:max-w-[520px] object-contain"
+            />
+          </div>
+
+        </div>
+      </section>
       <Reviews />
-      {/* Our Fertility Centres */}
       <section className="py-12 md:py-20 px-4 md:px-6 bg-pink-50">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-2xl md:text-4xl font-bold text-pink-600 text-center mb-10 md:mb-12">
@@ -161,7 +154,6 @@ const OurCentrePage = () => {
                 key={i}
                 className="bg-white border border-gray-200 rounded-2xl p-6 md:p-8 flex flex-col items-center text-center hover:shadow-md transition-shadow duration-200"
               >
-                {/* Pin icon */}
                 <div className="mb-3">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

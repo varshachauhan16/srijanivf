@@ -2,7 +2,6 @@ import { useState } from "react";
 import {
   ChevronLeft,
   ChevronRight,
-  Stethoscope,
   GraduationCap,
   Building2,
   Star,
@@ -72,16 +71,11 @@ const Doctors = () => {
   return (
     <section id="doctors" className="py-16 sm:py-24 bg-pink-50">
       <div className="container mx-auto px-4 sm:px-6 max-w-6xl">
-
-        {/* Heading */}
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-pink-600 text-center mb-10 sm:mb-16">
-          Meet Our Doctor's
+          Meet Our Doctors
         </h2>
 
-        {/* Card */}
         <div className="bg-white rounded-3xl sm:rounded-[40px] shadow-lg border border-pink-100 flex flex-col lg:flex-row overflow-hidden">
-
-          {/* LEFT — Image */}
           <div className="lg:w-[38%] w-full h-[260px] sm:h-[320px] lg:h-auto bg-pink-100 overflow-hidden">
             <img
               src={d.img}
@@ -90,10 +84,7 @@ const Doctors = () => {
             />
           </div>
 
-          {/* RIGHT */}
           <div className="flex-1 flex flex-col">
-
-            {/* Header */}
             <div className="px-4 sm:px-8 pt-5 sm:pt-8 pb-4 border-b border-pink-50">
               <p className="text-[10px] sm:text-xs font-semibold text-pink-400 uppercase tracking-widest mb-1">
                 Our Specialist
@@ -115,35 +106,38 @@ const Doctors = () => {
               </div>
             </div>
 
-            {/* Content */}
             <div className="px-4 sm:px-8 py-4 sm:py-5 flex flex-col gap-4 sm:gap-5">
-
-              {/* Hospital */}
               <div className="flex items-start gap-3">
                 <div className="w-7 h-7 sm:w-8 sm:h-8 bg-pink-50 flex items-center justify-center rounded-lg shrink-0">
                   <Building2 className="w-4 h-4 text-pink-500" />
                 </div>
+
                 <div>
-                  <p className="text-[10px] sm:text-xs text-gray-400">Hospital</p>
+                  <p className="text-[10px] sm:text-xs text-gray-400">
+                    Hospital
+                  </p>
+
                   <p className="text-sm font-semibold text-gray-700">
                     {d.hospital}
                   </p>
                 </div>
               </div>
 
-              {/* About */}
               <div className="flex items-start gap-3">
                 <div className="w-7 h-7 sm:w-8 sm:h-8 bg-pink-50 flex items-center justify-center rounded-lg shrink-0">
                   <Star className="w-4 h-4 text-pink-500" />
                 </div>
+
                 <p className="text-sm text-gray-500 leading-relaxed">
                   {d.desc}
                 </p>
               </div>
 
-              {/* Specializations */}
               <div>
-                <p className="text-xs text-gray-400 mb-2">Specializations</p>
+                <p className="text-xs text-gray-400 mb-2">
+                  Specializations
+                </p>
+
                 <div className="flex flex-wrap gap-2">
                   {d.specializations.map((s, i) => (
                     <span
@@ -156,9 +150,11 @@ const Doctors = () => {
                 </div>
               </div>
 
-              {/* Treats */}
               <div>
-                <p className="text-xs text-gray-400 mb-2">Also Treats</p>
+                <p className="text-xs text-gray-400 mb-2">
+                  Also Treats
+                </p>
+
                 <div className="flex flex-wrap gap-2">
                   {d.treats.map((t, i) => (
                     <span
@@ -170,14 +166,15 @@ const Doctors = () => {
                   ))}
                 </div>
               </div>
-
             </div>
           </div>
         </div>
 
-        {/* Navigation */}
         <div className="flex items-center justify-center gap-4 sm:gap-6 mt-8 sm:mt-10">
           <button
+            type="button"
+            title="Previous Doctor"
+            aria-label="Previous Doctor"
             onClick={prev}
             className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 border-pink-300 flex items-center justify-center text-pink-600 hover:bg-pink-100 transition"
           >
@@ -185,9 +182,12 @@ const Doctors = () => {
           </button>
 
           <div className="flex gap-2">
-            {doctors.map((_, i) => (
+            {doctors.map((doctor, i) => (
               <button
                 key={i}
+                type="button"
+                title={`Go to ${doctor.name}`}
+                aria-label={`Go to ${doctor.name}`}
                 onClick={() => setCurrent(i)}
                 className={`h-2 rounded-full transition-all ${
                   i === current
@@ -199,13 +199,15 @@ const Doctors = () => {
           </div>
 
           <button
+            type="button"
+            title="Next Doctor"
+            aria-label="Next Doctor"
             onClick={next}
             className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 border-pink-300 flex items-center justify-center text-pink-600 hover:bg-pink-100 transition"
           >
             <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
           </button>
         </div>
-
       </div>
     </section>
   );

@@ -14,7 +14,6 @@ const Footer = () => {
       <footer id="contact" className="pt-14 pb-8 text-white" style={{ backgroundColor: "#e1658a" }}>
         <div className="container mx-auto grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
 
-          {/* Logo + About — full width on mobile */}
           <div className="col-span-2 lg:col-span-1">
             <div className="flex items-center">
               <img src={logo} alt="Srijan IVF" className="h-12 w-auto object-contain" />
@@ -23,99 +22,93 @@ const Footer = () => {
               Delhi couples seeking to build their families find hope at Srijan IVF.
               We offer advanced treatments like IVF, IUI, ICSI and more.
             </p>
-<div className="mt-5 flex gap-3">
+            <div className="mt-5 flex gap-3">
 
-  {/* Facebook */}
-  <a
-    href="https://www.facebook.com/srijanivfcentre"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="h-10 w-10 rounded-full bg-white/20 hover:bg-white hover:text-[#e1658a] grid place-items-center transition"
-  >
-    <Facebook className="h-4 w-4" />
-  </a>
+              <a
+                href="https://www.facebook.com/srijanivfcentre"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="h-10 w-10 rounded-full bg-white/20 hover:bg-white hover:text-[#e1658a] grid place-items-center transition"
+              >
+                <Facebook className="h-4 w-4" />
+              </a>
 
-  {/* Instagram */}
-  <a
-    href="https://www.instagram.com/srijan.ivf/"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="h-10 w-10 rounded-full bg-white/20 hover:bg-white hover:text-[#e1658a] grid place-items-center transition"
-  >
-    <Instagram className="h-4 w-4" />
-  </a>
+              <a
+                href="https://www.instagram.com/srijan.ivf/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="h-10 w-10 rounded-full bg-white/20 hover:bg-white hover:text-[#e1658a] grid place-items-center transition"
+              >
+                <Instagram className="h-4 w-4" />
+              </a>
 
-  {/* YouTube */}
-  <a
-    href="https://www.youtube.com/@srijanfertilitycentre"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="h-10 w-10 rounded-full bg-white/20 hover:bg-white hover:text-[#e1658a] grid place-items-center transition"
-  >
-    <Youtube className="h-4 w-4" />
-  </a>
+              <a
+                href="https://www.youtube.com/@srijanfertilitycentre"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="h-10 w-10 rounded-full bg-white/20 hover:bg-white hover:text-[#e1658a] grid place-items-center transition"
+              >
+                <Youtube className="h-4 w-4" />
+              </a>
 
-  {/* Twitter (X) */}
-  <a
-    href="https://x.com/srijan_ivf"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="h-10 w-10 rounded-full bg-white/20 hover:bg-white hover:text-[#e1658a] grid place-items-center transition"
-  >
-    <span className="text-xs font-bold">X</span>
-  </a>
+              <a
+                href="https://x.com/srijan_ivf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="h-10 w-10 rounded-full bg-white/20 hover:bg-white hover:text-[#e1658a] grid place-items-center transition"
+              >
+                <span className="text-xs font-bold">X</span>
+              </a>
 
-  {/* LinkedIn */}
-  <a
-    href="https://www.linkedin.com/in/srijan-ivf"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="h-10 w-10 rounded-full bg-white/20 hover:bg-white hover:text-[#e1658a] grid place-items-center transition"
-  >
-    <Linkedin className="h-4 w-4" />
-  </a>
+              <a
+                href="https://www.linkedin.com/in/srijan-ivf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="h-10 w-10 rounded-full bg-white/20 hover:bg-white hover:text-[#e1658a] grid place-items-center transition"
+              >
+                <Linkedin className="h-4 w-4" />
+              </a>
 
-</div>
-</div>
+            </div>
+          </div>
 
-<div>
-  <h4 className="font-semibold mb-4 text-sm">Quick Links</h4>
-  <ul className="space-y-2 text-sm text-white/80">
+          <div>
+            <h4 className="font-semibold mb-4 text-sm">Quick Links</h4>
+            <ul className="space-y-2 text-sm text-white/80">
 
-    <li>
-      <Link to="/about-us" className="hover:text-white transition">
-        About
-      </Link>
-    </li>
+              <li>
+                <Link to="/about-us" className="hover:text-white transition">
+                  About
+                </Link>
+              </li>
 
-    <li>
-      <Link to="/centres" className="hover:text-white transition">
-        Centres
-      </Link>
-    </li>
+              <li>
+                <Link to="/centres" className="hover:text-white transition">
+                  Centres
+                </Link>
+              </li>
 
-    <li>
-      <Link to="/doctors" className="hover:text-white transition">
-        Doctors
-      </Link>
-    </li>
+              <li>
+                <Link to="/doctors" className="hover:text-white transition">
+                  Doctors
+                </Link>
+              </li>
 
-    <li>
-      <Link to="/testimonials" className="hover:text-white transition">
-        Testimonials
-      </Link>
-    </li>
+              <li>
+                <Link to="/testimonials" className="hover:text-white transition">
+                  Testimonials
+                </Link>
+              </li>
 
-    <li>
-      <Link to="/blog" className="hover:text-white transition">
-        Blog
-      </Link>
-    </li>
+              <li>
+                <Link to="/blog" className="hover:text-white transition">
+                  Blog
+                </Link>
+              </li>
 
-  </ul>
-</div>
+            </ul>
+          </div>
 
-          {/* Centres */}
           <div>
             <h4 className="font-semibold mb-4 text-sm">Centres</h4>
             <ul className="space-y-2 text-sm text-white/80">
@@ -127,7 +120,6 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Contact — full width on mobile */}
           <div className="col-span-2 md:col-span-1">
             <h4 className="font-semibold mb-4 text-sm">Get in Touch</h4>
             <ul className="space-y-3 text-sm text-white/80">
@@ -152,17 +144,12 @@ const Footer = () => {
 
         </div>
 
-        {/* Copyright — extra bottom padding on mobile for sticky bar */}
         <div className="container mx-auto border-t border-white/20 mt-12 pt-6 text-center text-sm text-white/70 pb-20 md:pb-0">
           © {new Date().getFullYear()} Srijan IVF. All rights reserved.
         </div>
       </footer>
 
-      {/* ── Sticky bottom bar — mobile only ── */}
-      {/* z-40 — WhatsApp/Call floating btns z-50 pe hain, wo iske upar rahenge */}
       <div className="fixed bottom-0 left-0 right-0 z-40 flex md:hidden shadow-[0_-2px_12px_rgba(0,0,0,0.15)]">
-
-        {/* Call Now — dark shade for contrast vs footer */}
         <a
           href="tel:+918851762433"
           className="flex-1 flex items-center justify-center gap-2 font-semibold text-sm py-4 transition active:opacity-80"
@@ -174,7 +161,6 @@ const Footer = () => {
 
         <div className="w-px bg-white/40" />
 
-        {/* Book Appointment — white for strong contrast */}
         <button
           onClick={() => setShowPopup(true)}
           className="flex-1 flex items-center justify-center gap-2 bg-white font-semibold text-sm py-4 transition active:bg-pink-50"

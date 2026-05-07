@@ -86,8 +86,6 @@ const DrSantoshPage = () => {
   return (
     <>
       <Navbar />
-
-      {/* Hero Banner */}
       <section className="relative w-full h-[50vh] md:h-[65vh] flex items-center justify-center text-center">
         <img src={bannerImg} alt="Dr. Santosh Kumar Arjun" className="absolute inset-0 w-full h-full object-cover brightness-40" />
         <div className="absolute inset-0 bg-gradient-to-b from-pink-900/40 to-black/50" />
@@ -103,7 +101,6 @@ const DrSantoshPage = () => {
         </div>
       </section>
 
-      {/* Doctor Profile Section */}
       <section className="py-10 md:py-20 px-4 md:px-6 bg-pink-50">
         <div className="max-w-6xl mx-auto">
           <div className="bg-white border border-pink-100 rounded-3xl p-6 md:p-12 flex flex-col md:flex-row gap-8 md:gap-10 items-center shadow-sm">
@@ -119,7 +116,6 @@ const DrSantoshPage = () => {
               </div>
             </div>
 
-            {/* Doctor Info */}
             <div className="flex-1">
               <h2 className="text-2xl md:text-4xl font-bold text-pink-600 mb-2 text-center md:text-left">Dr. Santosh Kumar Arjun</h2>
               <div className="w-14 h-1 bg-pink-500 rounded-full mb-5 mx-auto md:mx-0" />
@@ -150,7 +146,6 @@ const DrSantoshPage = () => {
         </div>
       </section>
 
-      {/* Stats Row */}
       <section className="bg-pink-600 py-8 md:py-10 px-4 md:px-6">
         <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
           {achievements.map((a, i) => (
@@ -162,7 +157,6 @@ const DrSantoshPage = () => {
         </div>
       </section>
 
-      {/* Fetal Imaging Section — Radiologist.webp on right */}
       <section className="py-12 md:py-20 px-4 md:px-6 bg-white">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-8 md:gap-14 items-center">
           <div className="flex-1 order-2 md:order-1">
@@ -184,7 +178,6 @@ const DrSantoshPage = () => {
         </div>
       </section>
 
-      {/* Top Radiology Services — exact layout from screenshot */}
       <section className="py-12 md:py-16 px-4 md:px-8 bg-pink-100 mx-2 md:mx-6 rounded-3xl mb-10">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-xl md:text-3xl font-bold text-pink-600 mb-2">
@@ -192,13 +185,10 @@ const DrSantoshPage = () => {
           </h2>
           <div className="w-14 h-1 bg-pink-500 rounded-full mb-10" />
 
-          {/* ── DESKTOP LAYOUT ── */}
           <div className="hidden md:grid grid-cols-[1fr_1fr_1fr_1fr] gap-0 items-start">
-            {/* Pregnancy illustration */}
             <div className="flex justify-center items-end pt-4">
               <img src={pregnancyImg} alt="Pregnancy" className="w-72 md:w-[350px] object-contain" />
             </div>
-            {/* Pregnancy list */}
             <div className="px-4 pt-4">
               <h3 className="text-2xl font-bold text-pink-600 mb-2">Pregnancy</h3>
               <div className="w-10 h-0.5 bg-pink-500 rounded-full mb-5" />
@@ -210,11 +200,9 @@ const DrSantoshPage = () => {
                 ))}
               </ul>
             </div>
-            {/* Gynecology illustration */}
             <div className="flex justify-center items-end pt-4">
               <img src={gynecologyImg} alt="Gynecology" className="w-64 md:w-[320px] object-contain" />
             </div>
-            {/* Gynecology list */}
             <div className="px-4 pt-4">
               <h3 className="text-2xl font-bold text-pink-600 mb-2">Gynecology</h3>
               <div className="w-10 h-0.5 bg-pink-500 rounded-full mb-5" />
@@ -228,9 +216,7 @@ const DrSantoshPage = () => {
             </div>
           </div>
 
-          {/* ── MOBILE LAYOUT ── */}
           <div className="flex flex-col gap-8 md:hidden">
-            {/* Pregnancy */}
             <div className="flex flex-col items-center gap-4">
               <img src={pregnancyImg} alt="Pregnancy" className="w-48 object-contain" />
               <div className="w-full">
@@ -245,7 +231,6 @@ const DrSantoshPage = () => {
                 </ul>
               </div>
             </div>
-            {/* Gynecology */}
             <div className="flex flex-col items-center gap-4">
               <img src={gynecologyImg} alt="Gynecology" className="w-40 object-contain" />
               <div className="w-full">
@@ -264,7 +249,6 @@ const DrSantoshPage = () => {
         </div>
       </section>
       <Reviews />
-      {/* FAQs */}
       <section className="py-12 md:py-20 px-4 md:px-6 bg-white">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-2xl md:text-3xl font-bold text-pink-600 mb-2">FAQs</h2>

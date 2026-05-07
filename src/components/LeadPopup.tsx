@@ -28,13 +28,11 @@ const LeadPopup = ({ onClose }: LeadPopupProps) => {
   };
 
   useEffect(() => {
-    // Agar onClose prop hai → Hero button se trigger hua → seedha open karo
     if (onClose) {
       setOpen(true);
       return;
     }
 
-    // Auto-popup logic (no onClose prop = auto mode)
     const now = Date.now();
     const submittedTime = Number(localStorage.getItem(STORAGE_KEY) || 0);
     if (submittedTime && now - submittedTime < ONE_DAY) return;
@@ -51,10 +49,8 @@ const LeadPopup = ({ onClose }: LeadPopupProps) => {
     setErrors({});
 
     if (onClose) {
-      // Button se khula tha — parent ko batao, reshow mat karo
       onClose();
     } else {
-      // Auto popup tha — 15s baad reshow karo
       scheduleReshow();
     }
   };

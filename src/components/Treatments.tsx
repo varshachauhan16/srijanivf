@@ -50,8 +50,6 @@ const Treatments = () => {
   return (
     <section className="py-16 sm:py-24 bg-gradient-to-b from-white to-pink-50">
       <div className="container mx-auto px-4 sm:px-6">
-
-        {/* Heading */}
         <div className="text-center max-w-2xl mx-auto">
           <h2 className="text-2xl sm:text-4xl md:text-5xl font-semibold">
             Our <span className="text-pink-500 not-italic">Treatments</span>
@@ -61,7 +59,6 @@ const Treatments = () => {
           </p>
         </div>
 
-        {/* Category Cards */}
         <div className="mt-10 sm:mt-14 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
           {treatmentCategories.map((cat, index) => {
             const Icon = cat.icon;
@@ -76,12 +73,10 @@ const Treatments = () => {
                     : "bg-white hover:bg-pink-500 hover:text-white hover:shadow-lg"
                 }`}
               >
-                {/* Icon */}
                 <div className="mx-auto mb-3 sm:mb-4 h-12 w-12 sm:h-14 sm:w-14 rounded-xl sm:rounded-2xl bg-pink-100 group-hover:bg-white/20 flex items-center justify-center transition">
                   <Icon className="h-6 w-6 sm:h-7 sm:w-7 text-pink-500 group-hover:text-white" />
                 </div>
 
-                {/* Title */}
                 <h3 className="text-base sm:text-lg lg:text-xl font-semibold">
                   {cat.title}
                 </h3>
@@ -90,7 +85,6 @@ const Treatments = () => {
           })}
         </div>
 
-        {/* Treatments Panel */}
         <div className="mt-12 sm:mt-16 p-5 sm:p-8 lg:p-10 rounded-2xl sm:rounded-3xl bg-white shadow-lg border">
           <h3 className="text-lg sm:text-2xl font-semibold mb-6 sm:mb-8 text-pink-500 text-center">
             {treatmentCategories[active].title}

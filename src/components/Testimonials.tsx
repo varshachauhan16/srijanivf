@@ -1,64 +1,81 @@
 import { useState } from "react";
-import { Quote, ChevronLeft, ChevronRight, Star } from "lucide-react";
 
-const reviews = [
+import img1 from "@/assets/Test-1.jpg";
+import img2 from "@/assets/test-2.jpg";
+import img3 from "@/assets/test-3.jpg";
+import img4 from "@/assets/test-4.jpg";
+
+const videos = [
   {
-    name: "Anjali & Vikram",
-    city: "Mumbai",
-    text: "After 7 years of trying, Srijan IVF gave us our miracle. Dr. Priya treated us like family every step of the way. Words can never repay this gift.",
+    thumbnail: img1,
+    video: "https://www.youtube.com/embed/zJ_VZNU0G_0",
   },
   {
-    name: "Sneha & Arjun",
-    city: "Delhi",
-    text: "The team's calm, science-first approach made all the difference. Our twins are now 8 months old and a constant reminder that hope is everything.",
+    thumbnail: img2,
+    video: "https://www.youtube.com/embed/LK6pz9ob5-g",
   },
   {
-    name: "Reema & Karan",
-    city: "Bangalore",
-    text: "We were exhausted from failed cycles elsewhere. Srijan's personalized protocol worked the very first time. We are forever grateful.",
+    thumbnail: img3,
+    video: "https://www.youtube.com/embed/31JMiGgYN_w",
+  },
+  {
+    thumbnail: img4,
+    video: "https://www.youtube.com/embed/S5WvHdA83IQ",
   },
 ];
 
 const Testimonials = () => {
-  const [i, setI] = useState(0);
-  const r = reviews[i];
+  const [activeVideo, setActiveVideo] = useState(null);
+
   return (
-    <section id="testimonials" className="py-24">
-      <div className="container mx-auto max-w-4xl">
-        <div className="text-center">
-          <span className="text-sm uppercase tracking-[0.2em] text-primary font-semibold">Stories of Hope</span>
-          <h2 className="mt-4 font-display text-4xl md:text-5xl font-semibold">
-            From our <span className="text-gradient not-italic">families</span>
-          </h2>
-        </div>
+    <section
+      id="testimonials"
+      className="py-16 bg-[#ececec]"
+    >
+      <div className="container mx-auto px-4">
 
-        <div className="mt-12 relative bg-card rounded-[2rem] p-10 md:p-14 shadow-card">
-          <Quote className="h-14 w-14 text-primary/15 absolute top-6 left-6" />
-          <div className="flex justify-center gap-1 mb-5">
-            {[...Array(5)].map((_, k) => <Star key={k} className="h-5 w-5 fill-primary text-primary" />)}
-          </div>
-          <p className="text-center font-display text-2xl md:text-3xl leading-relaxed text-foreground/90 not-italic">
-            “{r.text}”
-          </p>
-          <div className="text-center mt-6">
-            <div className="font-semibold">{r.name}</div>
-            <div className="text-sm text-muted-foreground">{r.city}</div>
-          </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
 
-          <div className="flex justify-center gap-3 mt-8">
-            <button onClick={() => setI((i - 1 + reviews.length) % reviews.length)} className="h-11 w-11 rounded-full border border-border hover:bg-primary-soft hover:border-primary/40 grid place-items-center transition-all" aria-label="prev">
-              <ChevronLeft className="h-5 w-5" />
-            </button>
-            <div className="flex items-center gap-2">
-              {reviews.map((_, k) => (
-                <button key={k} onClick={() => setI(k)} className={`h-2 rounded-full transition-all ${k === i ? "w-8 bg-primary" : "w-2 bg-border"}`} aria-label={`review ${k + 1}`} />
-              ))}
+          {videos.map((item, index) => (
+            <div
+              key={index}
+              onClick={() => setActiveVideo(item.video)}
+              className="cursor-pointer bg-white border border-gray-300 shadow-md overflow-hidden"
+            >
+              <img
+                src={item.thumbnail}
+                alt="testimonial"
+                className="w-full h-[200px] md:h-[250px] lg:h-[250px] object-contain bg-white"
+              />
             </div>
-            <button onClick={() => setI((i + 1) % reviews.length)} className="h-11 w-11 rounded-full border border-border hover:bg-primary-soft hover:border-primary/40 grid place-items-center transition-all" aria-label="next">
-              <ChevronRight className="h-5 w-5" />
-            </button>
-          </div>
+          ))}
+
         </div>
+
+        {activeVideo && (
+          <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center px-4">
+
+            <button
+              onClick={() => setActiveVideo(null)}
+              className="absolute top-4 right-5 text-white text-5xl leading-none"
+            >
+              ×
+            </button>
+
+            <div className="w-full max-w-6xl">
+              <iframe
+                className="w-full aspect-video"
+                src={`${activeVideo}?autoplay=1`}
+                title="testimonial-video"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+
+          </div>
+        )}
+
       </div>
     </section>
   );

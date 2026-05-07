@@ -40,7 +40,6 @@ const WhyChoose = () => {
       <section className="py-20 bg-gradient-to-b from-white to-pink-50">
         <div className="container mx-auto px-4">
 
-          {/* HEADING */}
           <div className="text-center max-w-4xl mx-auto">
             <h2 className="text-3xl md:text-5xl font-bold text-pink-600">
               Why Srijan IVF?
@@ -74,7 +73,6 @@ const WhyChoose = () => {
             </button>
           </div>
 
-          {/* POINTS */}
           <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {points.map((item, index) => (
               <div
@@ -93,7 +91,6 @@ const WhyChoose = () => {
           ))}
         </div>
 
-        {/* BOTTOM CARDS (your screenshot style but improved) */}
         <div className="mt-14 grid grid-cols-2 md:grid-cols-4 gap-4">
           {[
             "Personalized Plan",
@@ -110,13 +107,11 @@ const WhyChoose = () => {
             ))}
           </div>
 
-          {/* CTA */}
           <div className="mt-14 text-center">
             <p className="text-pink-600 font-semibold text-lg">
               Your journey to parenthood starts here! ❤️
             </p>
 
-            {/* 🔥 SAME AS HERO BUTTON */}
             <button
               onClick={() => setShowPopup(true)}
               className="mt-6 px-6 py-3 bg-pink-600 text-white rounded-full font-semibold hover:bg-pink-700 transition"

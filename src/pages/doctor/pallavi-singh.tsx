@@ -3,8 +3,8 @@ import Reviews from "@/components/Reviews";
 import Footer from "@/components/Footer";
 import Callus from "@/components/callbtn";
 import WhatsAppButton from "@/components/WhatsAppButton";
-import bannerImg from "@/assets/About-us-banner.jpg"; // Same banner as About page
-import doctorImg from "@/assets/Dr.-Pallavisingh.webp"; // Replace with actual doctor image path
+import bannerImg from "@/assets/About-us-banner.jpg";
+import doctorImg from "@/assets/Dr.-Pallavisingh.webp";
 
 const specializations = [
   { icon: "🧬", title: "IVF / ICSI", desc: "Advanced in-vitro fertilization and intracytoplasmic sperm injection procedures." },
@@ -35,8 +35,6 @@ const DrPallaviPage = () => {
   return (
     <>
       <Navbar />
-
-      {/* Hero Banner — same style as About Us page */}
       <section className="relative w-full h-[65vh] flex items-center justify-center text-center">
         <img src={bannerImg} alt="Dr. Pallavi Singh" className="absolute inset-0 w-full h-full object-cover brightness-40" />
         <div className="absolute inset-0 bg-gradient-to-b from-pink-900/40 to-black/50" />
@@ -52,12 +50,10 @@ const DrPallaviPage = () => {
         </div>
       </section>
 
-      {/* Doctor Profile Card */}
       <section className="relative w-full bg-gradient-to-br from-pink-50 via-white to-pink-100 py-20 px-6 overflow-hidden">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-pink-100 opacity-40 -translate-y-1/2 translate-x-1/4 pointer-events-none" />
         <div className="absolute bottom-0 left-0 w-[300px] h-[300px] rounded-full bg-pink-200 opacity-30 translate-y-1/2 -translate-x-1/4 pointer-events-none" />
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-14 items-center relative z-10">
-          {/* Doctor Image */}
           <div className="flex justify-center md:justify-start">
             <div className="relative">
               <div className="absolute -top-5 -left-5 w-full h-full rounded-[50%_50%_50%_30%] bg-pink-200 -z-10 opacity-60" />
@@ -67,7 +63,6 @@ const DrPallaviPage = () => {
                 alt="Dr. Pallavi Singh"
                 className="w-72 h-72 md:w-96 md:h-96 object-cover object-top rounded-[50%_50%_50%_30%] border-[6px] border-white shadow-2xl"
               />
-              {/* Badge */}
               <div className="absolute bottom-4 right-0 bg-white border border-pink-200 rounded-2xl px-4 py-3 shadow-lg">
                 <p className="text-pink-600 font-bold text-sm">23+ Years</p>
                 <p className="text-gray-500 text-xs">of Excellence</p>
@@ -75,7 +70,6 @@ const DrPallaviPage = () => {
             </div>
           </div>
 
-          {/* Doctor Info */}
           <div>
             <p className="text-xs font-semibold tracking-[4px] uppercase text-pink-400 mb-3">Meet Our Expert</p>
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-2">Dr. Pallavi Singh</h1>
@@ -115,7 +109,6 @@ const DrPallaviPage = () => {
         </div>
       </section>
 
-      {/* Stats Row */}
       <section className="bg-pink-600 py-10 px-6">
         <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6">
           {achievements.map((a, i) => (
@@ -127,7 +120,6 @@ const DrPallaviPage = () => {
         </div>
       </section>
 
-      {/* About Doctor Extended */}
       <section className="py-20 px-6 bg-white">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
@@ -150,7 +142,6 @@ const DrPallaviPage = () => {
         </div>
       </section>
 
-      {/* Extended Bio */}
       <section className="py-20 px-6 bg-pink-50">
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-14 items-center">
           <div className="bg-white border border-pink-100 rounded-3xl p-8 hover:shadow-lg transition-all duration-300">
@@ -191,7 +182,6 @@ const DrPallaviPage = () => {
         </div>
       </section>
 
-      {/* Treatment Section */}
       <section className="py-20 px-6 bg-white">
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-14 items-center">
           <div>
@@ -202,7 +192,6 @@ const DrPallaviPage = () => {
               If you're looking for an IVF center in Delhi NCR that offers top-notch medical services and competitive pricing, look no further! SrijanIVF provides personalized IVF treatments designed to fit your budget. The average cost of IVF in Delhi can vary, but we strive to make it accessible. Explore flexible payment options, including easy EMI financing, to make your dream of parenthood a reality without financial stress.
             </p>
 
-            {/* Treatment Table */}
             <div className="border border-pink-100 rounded-2xl overflow-hidden shadow-sm">
               <table className="w-full text-sm">
                 <thead>
@@ -223,7 +212,6 @@ const DrPallaviPage = () => {
             </div>
           </div>
 
-          {/* Illustration / Decorative side */}
           <div className="flex justify-center items-center">
             <div className="relative w-full max-w-sm">
               <div className="absolute inset-0 bg-pink-100 rounded-[60%_40%_40%_60%] opacity-40 scale-110" />

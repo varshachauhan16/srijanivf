@@ -12,6 +12,7 @@ import Santoshkumar from "./pages/doctor/santosh-kumar.tsx";
 import Centre from "./pages/centre.tsx";
 import Testimonials from "./pages/testimonials.tsx";
 import Contact from "./pages/contact-us.tsx";
+import Appointment from "./components/Appointment.tsx";
 
 const queryClient = new QueryClient();
 
@@ -31,6 +32,7 @@ const App = () => (
           <Route path="/centre" element={<Centre/>} />
           <Route path="/testimonials" element={<Testimonials />} />
           <Route path="/contact-us" element={<Contact/>} />
+          <Route path="/appointment" element={<Appointment />} />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>

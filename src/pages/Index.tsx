@@ -3,10 +3,9 @@ import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Treatments from "@/components/Treatments";
 import Reviews from "@/components/Reviews.tsx"
-import WhyChooseUs from "@/components/WhyChooseUs";
 import Appointment from "@/components/Appointment";
 import Doctors from "@/components/Doctors";
-import Testimonials from "@/components/Testimonials";
+import Testimonials from "@/components/customer-testimonials";
 import Blog from "@/components/Blog";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
@@ -26,8 +25,6 @@ const Index = () => (
     <Treatments />
     <Reviews />
     <Blog />
-    {/* <WhyChooseUs /> */}
-    {/* <Doctors /> */}
     <Testimonials />
     <Appointment />
     <Footer />

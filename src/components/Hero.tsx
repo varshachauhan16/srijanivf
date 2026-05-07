@@ -37,37 +37,14 @@ const Hero = () => {
             <HeroForm mode="inline" />
           </div>
         </div>
-
-        {/* Stats strip */}
-        {/* <div className="flex items-center justify-around px-4 py-4 mt-3 bg-pink-50 border-t border-pink-100">
-          <div className="text-center">
-            <div className="text-lg font-bold text-primary">20+</div>
-            <div className="text-[10px] text-muted-foreground uppercase tracking-wide">Years</div>
-          </div>
-          <div className="h-8 w-px bg-pink-200" />
-          <div className="text-center">
-            <div className="text-lg font-bold text-primary">90%</div>
-            <div className="text-[10px] text-muted-foreground uppercase tracking-wide">Success</div>
-          </div>
-          <div className="h-8 w-px bg-pink-200" />
-          <div className="text-center">
-            <div className="text-lg font-bold text-primary">10K+</div>
-            <div className="text-[10px] text-muted-foreground uppercase tracking-wide">IVF Babies</div>
-          </div>
-        </div> */}
-
       </section>
 
-      {/* ══════════════════════════════════════════
-          DESKTOP LAYOUT (hidden on mobile)
-      ══════════════════════════════════════════ */}
       <section id="home" className="hidden lg:block relative pt-24 pb-20 overflow-hidden gradient-hero">
         <div className="absolute -top-20 -right-20 h-96 w-96 rounded-full bg-primary/20 blur-3xl" aria-hidden />
         <div className="absolute top-40 -left-20 h-80 w-80 rounded-full bg-secondary/20 blur-3xl" aria-hidden />
 
         <div className="container mx-auto relative grid lg:grid-cols-2 gap-12 items-center">
 
-          {/* Desktop: Text left */}
           <div className="animate-fade-in-up">
             <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-card shadow-soft text-sm font-medium text-primary">
               <Sparkles className="h-4 w-4" /> Trusted by 10,000+ happy parents
@@ -90,25 +67,8 @@ const Hero = () => {
                 </a>
               </Button>
             </div>
-            {/* <div className="mt-10 flex items-center gap-8">
-              <div>
-                <div className="font-display text-3xl font-bold text-primary">20+</div>
-                <div className="text-xs text-muted-foreground uppercase tracking-wider">Years of Care</div>
-              </div>
-              <div className="h-12 w-px bg-border" />
-              <div>
-                <div className="font-display text-3xl font-bold text-primary">90%</div>
-                <div className="text-xs text-muted-foreground uppercase tracking-wider">Success Rate</div>
-              </div>
-              <div className="h-12 w-px bg-border" />
-              <div>
-                <div className="font-display text-3xl font-bold text-primary">10K+</div>
-                <div className="text-xs text-muted-foreground uppercase tracking-wider">IVF Babies</div>
-              </div>
-            </div> */}
           </div>
 
-          {/* Desktop: Image right */}
           <div className="relative animate-scale-in">
             <div className="relative rounded-[2rem] overflow-hidden shadow-glow">
               <img
@@ -138,19 +98,12 @@ const Hero = () => {
   );
 };
 
-// ── Types ──────────────────────────────────────────────────────────────────────
 
 type HeroFormState = { name: string; phone: string; treatment: string };
 type HeroFormErrors = Partial<Record<keyof HeroFormState, string>>;
 const initialState: HeroFormState = { name: "", phone: "", treatment: "" };
-
-// ── ErrMsg ─────────────────────────────────────────────────────────────────────
-
 const ErrMsg = ({ msg }: { msg?: string }): React.ReactElement | null =>
   msg ? <p className="text-[11px] text-red-500 mt-0.5 ml-1">{msg}</p> : null;
-
-// ── FormFields ─────────────────────────────────────────────────────────────────
-
 interface FormFieldsProps {
   form: HeroFormState;
   errors: HeroFormErrors;
@@ -206,8 +159,6 @@ const FormFields = ({ form, errors, onName, onPhone, onTreatment }: FormFieldsPr
     </Button>
   </>
 );
-
-// ── HeroForm ───────────────────────────────────────────────────────────────────
 
 const HeroForm = ({ mode }: { mode: "floating" | "inline" }) => {
   const [form, setForm] = useState<HeroFormState>(initialState);

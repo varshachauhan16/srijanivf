@@ -76,13 +76,11 @@ const Testimonials = () => {
     <section className="py-20 bg-[#f8f9fa]">
       <div className="container mx-auto px-4">
 
-        {/* Heading */}
         <h2 className="text-center text-4xl font-semibold text-pink-500 mb-2">
           What Our Patients Say
         </h2>
         <p className="text-center text-sm text-gray-500 mb-6">Reviews from Google</p>
 
-        {/* Rating Summary */}
         <div className="flex items-center justify-center gap-4 mb-6">
           <span className="text-5xl font-medium text-gray-800">4.9</span>
           <div className="flex flex-col gap-1">
@@ -95,7 +93,6 @@ const Testimonials = () => {
 
         <hr className="mb-6 border-gray-200" />
 
-        {/* Scrolling Cards */}
         <div
           ref={scrollRef}
           className="flex gap-3 overflow-x-auto"
@@ -108,7 +105,6 @@ const Testimonials = () => {
               key={i}
               className="min-w-[280px] max-w-[280px] bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex-shrink-0"
             >
-              {/* Card Header */}
               <div className="flex items-center gap-2.5 mb-3">
                 <div
                   className={`h-9 w-9 rounded-full flex items-center justify-center text-white text-sm font-medium flex-shrink-0 ${
@@ -124,18 +120,15 @@ const Testimonials = () => {
                 <GoogleIcon />
               </div>
 
-              {/* Stars */}
               <div className="flex gap-0.5 mb-2">
                 {[...Array(5)].map((_, j) => <StarIcon key={j} />)}
               </div>
 
-              {/* Review Text */}
               <p className="text-sm text-gray-600 leading-relaxed">{r.text}</p>
             </div>
           ))}
         </div>
 
-        {/* Powered by Google */}
         <div className="flex items-center justify-center gap-1.5 mt-5 text-xs text-gray-400">
           <GoogleIcon />
           <span>Powered by Google Reviews</span>

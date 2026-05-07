@@ -27,10 +27,8 @@ const LeadPopup = () => {
     const now = Date.now();
     const submittedTime = Number(localStorage.getItem(STORAGE_KEY) || 0);
 
-    // Already submitted within 24h — don't show at all
     if (submittedTime && now - submittedTime < ONE_DAY) return;
 
-    // First show after 3s
     const timer = setTimeout(() => setOpen(true), 3000);
     return () => {
       clearTimeout(timer);
@@ -38,14 +36,12 @@ const LeadPopup = () => {
     };
   }, []);
 
-  // ── Close: schedule reshow after 15s ──────────────────────────────────
   const handleClose = () => {
     setOpen(false);
     setErrors({});
     scheduleReshow();
   };
 
-  // ── Name: only letters & spaces ───────────────────────────────────────
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const val = e.target.value;
     if (/^[a-zA-Z\s]*$/.test(val)) {
@@ -54,14 +50,12 @@ const LeadPopup = () => {
     }
   };
 
-  // ── Phone: only digits, max 10 ────────────────────────────────────────
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const val = e.target.value.replace(/\D/g, "").slice(0, 10);
     setForm((prev) => ({ ...prev, phone: val }));
     setErrors((prev) => ({ ...prev, phone: "" }));
   };
 
-  // ── Validate ──────────────────────────────────────────────────────────
   const validate = (): FormErrors => {
     const newErrors: FormErrors = {};
 
@@ -82,7 +76,6 @@ const LeadPopup = () => {
     return newErrors;
   };
 
-  // ── Submit ────────────────────────────────────────────────────────────
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const newErrors = validate();
@@ -93,7 +86,6 @@ const LeadPopup = () => {
 
     setLoading(true);
 
-    // Cancel any pending reshow — form submitted successfully
     if (timerRef.current) clearTimeout(timerRef.current);
     localStorage.setItem(STORAGE_KEY, Date.now().toString());
 
@@ -115,15 +107,15 @@ const LeadPopup = () => {
     <div className="fixed inset-0 z-50 grid place-items-center bg-black/50 backdrop-blur-sm p-4">
       <div className="relative w-full max-w-md bg-white rounded-3xl shadow-xl overflow-hidden">
 
-        {/* Close */}
         <button
           onClick={handleClose}
+          title="Close popup"
+          aria-label="Close popup"
           className="absolute top-4 right-4 h-9 w-9 rounded-full bg-gray-100 hover:bg-gray-200 grid place-items-center"
         >
           <X className="h-4 w-4" />
         </button>
 
-        {/* Header */}
         <div className="p-6 text-white" style={{ backgroundColor: "#e1658a" }}>
           <div className="flex items-center gap-2">
             <Heart className="h-5 w-5" />
@@ -133,10 +125,8 @@ const LeadPopup = () => {
           <p className="text-sm opacity-90 mt-1">Speak with expert — No cost, No commitment.</p>
         </div>
 
-        {/* Form */}
         <form onSubmit={handleSubmit} noValidate className="p-6 space-y-3">
 
-          {/* Name */}
           <div>
             <input
               value={form.name}
@@ -148,7 +138,6 @@ const LeadPopup = () => {
             <ErrMsg msg={errors.name} />
           </div>
 
-          {/* Phone */}
           <div>
             <input
               value={form.phone}
@@ -162,8 +151,7 @@ const LeadPopup = () => {
             <ErrMsg msg={errors.phone} />
           </div>
 
-          {/* Treatment */}
-          <select className="w-full px-4 py-3 rounded-xl border outline-none focus:ring-2 focus:ring-pink-200 focus:border-pink-400 transition">
+          <select aria-label="Select treatment" className="w-full px-4 py-3 rounded-xl border outline-none focus:ring-2 focus:ring-pink-200 focus:border-pink-400 transition">
             <option>Select treatment</option>
             <option>IVF</option>
             <option>IUI</option>

@@ -7,12 +7,12 @@ import logo from "@/assets/srijanivf_logoNew.webp";
 const links = [
   { href: "/", label: "Home" },
   { href: "/about-us", label: "About" },
-  { href: "#treatments", label: "Treatments" },
-  { href: "doctors", label: "Doctors" }, // special handling
-  { href: "/centre", label: "Centre" },  // ✅ NEW ADDED
+  { href: "/treatments", label: "Treatments" },
+  { href: "/doctors", label: "Doctors" },
+  { href: "/centre", label: "Centre" },
   { href: "/testimonials", label: "Testimonials" },
-  { href: "#blog", label: "Blog" },
-  { href: "/contact-us", label: "Contact" },
+  { href: "/blog", label: "Blog" },
+  { href: "/contact-us", label: "Contact Us" },
 ];
 
 const Navbar = () => {
@@ -34,8 +34,6 @@ const Navbar = () => {
       }`}
     >
       <nav className="container mx-auto flex items-center justify-between py-4">
-        
-        {/* LOGO */}
         <Link to="/" className="flex items-center">
           <img
             src={logo}
@@ -43,13 +41,10 @@ const Navbar = () => {
             className="h-10 sm:h-12 w-auto object-contain"
           />
         </Link>
-
-        {/* DESKTOP MENU */}
         <ul className="hidden lg:flex items-center gap-8">
           {links.map((l) => (
             <li key={l.label} className="relative group">
 
-              {/* DOCTORS DROPDOWN */}
               {l.label === "Doctors" ? (
                 <>
                   <span className="text-sm font-medium text-foreground/75 hover:text-primary cursor-pointer">
@@ -93,7 +88,6 @@ const Navbar = () => {
           ))}
         </ul>
 
-        {/* RIGHT SIDE */}
         <div className="hidden lg:flex items-center gap-3">
           <a
             href="tel:+918851762433"
@@ -107,7 +101,6 @@ const Navbar = () => {
           </Button>
         </div>
 
-        {/* MOBILE BUTTON */}
         <button
           className="lg:hidden p-2 rounded-xl hover:bg-muted"
           onClick={() => setOpen(!open)}
@@ -116,7 +109,6 @@ const Navbar = () => {
         </button>
       </nav>
 
-      {/* MOBILE MENU */}
       {open && (
         <div className="lg:hidden bg-background border-t border-border animate-fade-in">
           <ul className="container mx-auto py-4 flex flex-col gap-1">
@@ -134,9 +126,9 @@ const Navbar = () => {
             </li>
 
             <li>
-              <a href="#treatments" onClick={() => setOpen(false)} className="block py-3 px-3">
+              <Link to="/treatments" onClick={() => setOpen(false)} className="block py-3 px-3">
                 Treatments
-              </a>
+              </Link>
             </li>
 
             {/* DOCTORS */}
@@ -154,7 +146,6 @@ const Navbar = () => {
               </Link>
             </li>
 
-            {/* ✅ CENTRE ADDED */}
             <li>
               <Link to="/centre" onClick={() => setOpen(false)} className="block py-3 px-3">
                 Centre
@@ -167,16 +158,16 @@ const Navbar = () => {
             </li>
 
             <li>
-              <a href="/contact-us" onClick={() => setOpen(false)} className="block py-3 px-3">
-                Contact
-              </a>
+              <Link to="/contact-us" onClick={() => setOpen(false)} className="block py-3 px-3">
+                Contact Us
+              </Link>
             </li>
 
             <li className="pt-2">
               <Button variant="cta" className="w-full" asChild>
-                <a href="#appointment" onClick={() => setOpen(false)}>
+                <Link to="/appointment" onClick={() => setOpen(false)}>
                   Book Free Consultation
-                </a>
+                </Link  >
               </Button>
             </li>
 
