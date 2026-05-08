@@ -79,26 +79,68 @@ const LeadPopup = ({ onClose }: LeadPopupProps) => {
     return newErrors;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
     const newErrors = validate();
+
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
       return;
     }
 
-    setLoading(true);
-    if (timerRef.current) clearTimeout(timerRef.current);
-    localStorage.setItem(STORAGE_KEY, Date.now().toString());
+    try {
+      setLoading(true);
 
-    toast({ title: "Submitted successfully 🎉" });
+      const formData = new FormData();
 
-    setTimeout(() => {
-      setOpen(false);
+      formData.append("name", form.name);
+      formData.append("mobile", form.phone);
+      formData.append("source_name", "LeadPopup");
+      formData.append("city_name", "Delhi");
+
+      const response = await fetch(
+        "https://api.srijanivfcentre.com/api/v1/lead/generate-lead/",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+
+      const data = await response.json();
+
+      console.log(data);
+
+      if (response.ok) {
+        if (timerRef.current) clearTimeout(timerRef.current);
+
+        localStorage.setItem(STORAGE_KEY, Date.now().toString());
+
+        toast({ title: "Submitted successfully 🎉" });
+
+        setTimeout(() => {
+          setOpen(false);
+          setLoading(false);
+
+          if (onClose) onClose();
+
+          window.location.href = "/thank-you";
+        }, 800);
+      } else {
+        setLoading(false);
+        toast({
+          title: "Something went wrong",
+        });
+      }
+    } catch (error) {
+      console.log(error);
+
       setLoading(false);
-      if (onClose) onClose();
-      window.location.href = "/thank-you";
-    }, 800);
+
+      toast({
+        title: "Server Error",
+      });
+    }
   };
 
   const ErrMsg = ({ msg }: { msg?: string }): React.ReactElement | null =>
@@ -134,9 +176,8 @@ const LeadPopup = ({ onClose }: LeadPopupProps) => {
               value={form.name}
               onChange={handleNameChange}
               placeholder="Your name"
-              className={`w-full px-4 py-3 rounded-xl border outline-none transition focus:ring-2 ${
-                errors.name ? "border-red-400 focus:ring-red-200" : "focus:ring-pink-200 focus:border-pink-400"
-              }`}
+              className={`w-full px-4 py-3 rounded-xl border outline-none transition focus:ring-2 ${errors.name ? "border-red-400 focus:ring-red-200" : "focus:ring-pink-200 focus:border-pink-400"
+                }`}
             />
             <ErrMsg msg={errors.name} />
           </div>
@@ -148,14 +189,13 @@ const LeadPopup = ({ onClose }: LeadPopupProps) => {
               placeholder="Phone number"
               inputMode="numeric"
               maxLength={10}
-              className={`w-full px-4 py-3 rounded-xl border outline-none transition focus:ring-2 ${
-                errors.phone ? "border-red-400 focus:ring-red-200" : "focus:ring-pink-200 focus:border-pink-400"
-              }`}
+              className={`w-full px-4 py-3 rounded-xl border outline-none transition focus:ring-2 ${errors.phone ? "border-red-400 focus:ring-red-200" : "focus:ring-pink-200 focus:border-pink-400"
+                }`}
             />
             <ErrMsg msg={errors.phone} />
           </div>
 
-          <select 
+          <select
             aria-label="Select treatment"
             className="w-full px-4 py-3 rounded-xl border outline-none focus:ring-2 focus:ring-pink-200 focus:border-pink-400 transition"
           >

@@ -194,17 +194,50 @@ const HeroForm = ({ mode }: { mode: "floating" | "inline" }) => {
     return newErrors;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const newErrors = validate();
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
-      return;
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+
+  const newErrors = validate();
+
+  if (Object.keys(newErrors).length > 0) {
+    setErrors(newErrors);
+    return;
+  }
+
+  try {
+    const formData = new FormData();
+
+    formData.append("name", form.name);
+    formData.append("mobile", form.phone);
+    formData.append("source_name", "HeroForm");
+    formData.append("city_name", "Delhi");
+
+    const response = await fetch(
+      "https://api.srijanivfcentre.com/api/v1/lead/generate-lead/",
+      {
+        method: "POST",
+        body: formData,
+      }
+    );
+
+    const data = await response.json();
+
+    console.log(data);
+
+    if (response.ok) {
+      setSubmitted(true);
+
+      setForm(initialState);
+
+      setErrors({});
+    } else {
+      alert("Something went wrong");
     }
-    setSubmitted(true);
-    setForm(initialState);
-    setErrors({});
-  };
+  } catch (error) {
+    console.log(error);
+    alert("Server Error");
+  }
+};
 
   const baseCardCls = "bg-card/95 backdrop-blur rounded-2xl shadow-card p-5 border border-border/50";
 

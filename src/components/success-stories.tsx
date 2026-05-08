@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const videos = [
   {
@@ -21,7 +22,7 @@ const videos = [
     id: "5",
     url: "https://www.youtube.com/embed/S5WvHdA83IQ",
   },
-    {
+  {
     id: "6",
     url: "https://www.youtube.com/embed/Pp5Jo_1hnWQ",
   },
@@ -32,7 +33,6 @@ const SuccessStories = () => {
     <section className="py-16 md:py-24 bg-[#f5f5f5]">
       <div className="container mx-auto px-4 md:px-6">
         <div className="text-center mb-12">
-
           <h2 className="text-3xl md:text-5xl font-bold text-pink-600 leading-tight">
             Our Patient’s Real Success Stories
           </h2>
@@ -61,6 +61,15 @@ const SuccessStories = () => {
               </div>
             </div>
           ))}
+        </div>
+
+        <div className="flex justify-center mt-12">
+          <Link
+            to="/success-stories-video"
+            className="bg-pink-600 hover:bg-pink-700 text-white font-semibold px-8 py-3 rounded-full shadow-lg transition-all duration-300 hover:scale-105"
+          >
+            View More Success Stories
+          </Link>
         </div>
       </div>
     </section>

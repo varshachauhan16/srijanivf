@@ -15,6 +15,7 @@ import Contact from "./pages/contact-us.tsx";
 import Appointment from "./components/Appointment.tsx";
 import BlogsPage from "./pages/Blogspage.tsx";
 import BlogDetailPage from "./pages/Blogdetailpage.tsx";
+import SuccessStoriesPage from "./pages/success-stories-video.tsx";
 
 const queryClient = new QueryClient();
 
@@ -37,6 +38,7 @@ const App = () => (
           <Route path="/appointment" element={<Appointment />} />
           <Route path="/Blogspage" element={<BlogsPage />} />
           <Route path="/blog/:slug" element={<BlogDetailPage />} />
+          <Route path="/success-stories-video" element={<SuccessStoriesPage />} />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>

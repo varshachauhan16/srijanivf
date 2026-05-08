@@ -111,7 +111,7 @@ const Appointment = () => {
     return newErrors;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     const newErrors = validate();
@@ -121,18 +121,45 @@ const Appointment = () => {
       return;
     }
 
-    console.log("Form submitted:", form);
+    try {
+      const formData = new FormData();
 
-    setSuccess(true);
-    setForm(initialForm);
-    setErrors({});
+      formData.append("name", form.name);
+      formData.append("mobile", form.phone);
+      formData.append("source_name", "WebForm");
+      formData.append("city_name", "Delhi");
+
+      const response = await fetch(
+        "https://api.srijanivfcentre.com/api/v1/lead/generate-lead/",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+
+      const data = await response.json();
+
+      console.log(data);
+
+      if (response.ok) {
+        setSuccess(true);
+
+        setForm(initialForm);
+
+        setErrors({});
+      } else {
+        alert("Something went wrong");
+      }
+    } catch (error) {
+      console.log(error);
+      alert("Server Error");
+    }
   };
 
   const inputCls = (err?: string) =>
-    `w-full border rounded-xl px-4 py-2.5 text-sm text-gray-700 outline-none transition ${
-      err
-        ? "border-red-400 focus:border-red-400"
-        : "border-gray-200 focus:border-pink-400"
+    `w-full border rounded-xl px-4 py-2.5 text-sm text-gray-700 outline-none transition ${err
+      ? "border-red-400 focus:border-red-400"
+      : "border-gray-200 focus:border-pink-400"
     }`;
 
   return (

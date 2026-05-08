@@ -119,7 +119,7 @@ const BlogDetailPage = () => {
             </div>
           </article>
 
-          <aside className="w-full md:w-[300px] shrink-0 flex flex-col gap-4  md:top-24 self-start">
+          <aside className="w-full md:w-[300px] shrink-0 flex flex-col gap-4 md:sticky md:top-24 self-start">
 
             <div className="bg-pink-200 rounded-[24px] p-3 shadow-sm">
               <div className="bg-white rounded-[20px] p-4">
@@ -131,7 +131,7 @@ const BlogDetailPage = () => {
                     </h3>
 
                     <form
-                      onSubmit={(e) => {
+                      onSubmit={async (e) => {
                         e.preventDefault();
 
                         const form = e.currentTarget;
@@ -141,7 +141,6 @@ const BlogDetailPage = () => {
                         const phone = formData.get("phone")?.toString().trim() || "";
                         const treatment = formData.get("treatment")?.toString().trim() || "";
 
-                        // Name validation
                         if (!/^[A-Za-z\s]+$/.test(name)) {
                           alert("Name should contain only alphabets");
                           return;
@@ -152,7 +151,6 @@ const BlogDetailPage = () => {
                           return;
                         }
 
-                        // Phone validation
                         if (!/^[789]\d{9}$/.test(phone)) {
                           alert(
                             "Phone number must be 10 digits and start with 7, 8, or 9"
@@ -165,8 +163,36 @@ const BlogDetailPage = () => {
                           return;
                         }
 
-                        setSubmitted(true);
-                        form.reset();
+                        try {
+                          const apiFormData = new FormData();
+
+                          apiFormData.append("name", name);
+                          apiFormData.append("mobile", phone);
+                          apiFormData.append("source_name", "BlogForm");
+                          apiFormData.append("city_name", "Delhi");
+
+                          const response = await fetch(
+                            "https://api.srijanivfcentre.com/api/v1/lead/generate-lead/",
+                            {
+                              method: "POST",
+                              body: apiFormData,
+                            }
+                          );
+
+                          const data = await response.json();
+
+                          console.log(data);
+
+                          if (response.ok) {
+                            setSubmitted(true);
+                            form.reset();
+                          } else {
+                            alert("Something went wrong");
+                          }
+                        } catch (error) {
+                          console.log(error);
+                          alert("Server Error");
+                        }
                       }}
                       className="space-y-2.5"
                     >
