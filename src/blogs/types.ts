@@ -6,6 +6,7 @@ export interface Blog {
   image: string;
   intro: string;
   content: string;
+  bannerImage?: string;
 }
 
 export type BlogCategory =

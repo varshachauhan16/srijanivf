@@ -45,20 +45,19 @@ const BlogsPage = () => {
               key={blog.id}
               className="border border-gray-200 rounded-3xl overflow-hidden hover:shadow-lg transition-shadow duration-300 flex flex-col"
             >
-              <div className="w-full h-52 md:h-72 overflow-hidden bg-pink-50">
+              <div className="w-full bg-pink-50 overflow-hidden">
                 <img
                   src={blog.image}
                   alt={blog.title}
-                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                  className="w-full h-auto block hover:scale-105 transition-transform duration-500"
                 />
               </div>
 
               <div className="p-5 md:p-8">
                 <div className="flex flex-wrap items-center gap-3 mb-3">
                   <span
-                    className={`text-xs font-semibold px-3 py-1 rounded-full ${
-                      categoryColors[blog.category]
-                    }`}
+                    className={`text-xs font-semibold px-3 py-1 rounded-full ${categoryColors[blog.category]
+                      }`}
                   >
                     {blog.category}
                   </span>

@@ -1,10 +1,12 @@
 import { useParams, Link } from "react-router-dom";
+import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Callus from "@/components/callbtn";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import { blogs, BlogCategory } from "@/blogs";
 import { renderContent } from "@/lib/rendercontent";
+import bannerImg from "@/assets/About-us-banner.jpg";
 
 const categoryColors: Record<BlogCategory, string> = {
   IVF: "bg-pink-100 text-pink-600",
@@ -44,14 +46,14 @@ const BlogDetailPage = () => {
   const related = blogs
     .filter((b) => b.id !== blog.id && b.category === blog.category)
     .slice(0, 2);
-
+  const [submitted, setSubmitted] = useState(false);
   return (
     <>
       <Navbar />
 
       <section className="relative w-full h-[40vh] md:h-[55vh] flex items-end justify-center">
         <img
-          src={blog.image}
+          src={bannerImg}
           alt={blog.title}
           className="absolute inset-0 w-full h-full object-cover brightness-50"
         />
@@ -78,10 +80,8 @@ const BlogDetailPage = () => {
       </section>
 
       <section className="py-10 md:py-16 px-4 md:px-6 bg-white">
-        <div className="max-w-5xl mx-auto flex flex-col md:flex-row gap-10">
-
-          <article className="flex-1 min-w-0">
-            <div>{renderContent(blog.content)}</div>
+        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-12 items-start">
+          <article className="flex-1 min-w-0 lg:max-w-[calc(100%-390px)]">            <div>{renderContent(blog.content)}</div>
 
             <div className="mt-10 pt-6 border-t border-gray-100 flex flex-wrap items-center justify-between gap-4">
               <Link
@@ -118,39 +118,176 @@ const BlogDetailPage = () => {
             </div>
           </article>
 
-          <aside className="w-full md:w-72 shrink-0 flex flex-col gap-5">
+          <aside className="w-full md:w-[300px] shrink-0 flex flex-col gap-4 md:sticky md:top-24 self-start">
 
-            <div className="bg-pink-600 rounded-2xl p-6 text-white">
-              <h3 className="text-base font-bold mb-2">Book Free IVF Consultation</h3>
-              <p className="text-pink-100 text-xs mb-4 leading-relaxed">
-                Talk to our fertility specialists today. Take the first step toward parenthood.
-              </p>
-              <a
-                href="tel:+918851762433"
-                className="block w-full bg-white text-pink-600 font-bold text-sm text-center py-2.5 rounded-xl hover:bg-pink-50 transition-colors duration-200"
-              >
-                Call +91-8851762433
-              </a>
+            <div className="bg-pink-200 rounded-[24px] p-3 shadow-sm">
+              <div className="bg-white rounded-[20px] p-4">
+
+                {!submitted ? (
+                  <>
+                    <h3 className="text-[20px] leading-tight font-bold text-pink-500 text-center mb-3">
+                      Book Free IVF Consultation
+                    </h3>
+
+                    <form
+                      onSubmit={(e) => {
+                        e.preventDefault();
+
+                        const form = e.currentTarget;
+                        const formData = new FormData(form);
+
+                        const name = formData.get("name")?.toString().trim() || "";
+                        const phone = formData.get("phone")?.toString().trim() || "";
+                        const treatment = formData.get("treatment")?.toString().trim() || "";
+
+                        // Name validation
+                        if (!/^[A-Za-z\s]+$/.test(name)) {
+                          alert("Name should contain only alphabets");
+                          return;
+                        }
+
+                        if (name.length < 3) {
+                          alert("Please enter a valid name");
+                          return;
+                        }
+
+                        // Phone validation
+                        if (!/^[789]\d{9}$/.test(phone)) {
+                          alert(
+                            "Phone number must be 10 digits and start with 7, 8, or 9"
+                          );
+                          return;
+                        }
+
+                        if (!treatment) {
+                          alert("Please select a treatment");
+                          return;
+                        }
+
+                        setSubmitted(true);
+                        form.reset();
+                      }}
+                      className="space-y-2.5"
+                    >
+
+                      <input
+                        type="text"
+                        name="name"
+                        placeholder="Name*"
+                        required
+                        minLength={3}
+                        maxLength={30}
+                        pattern="[A-Za-z\s]+"
+                        title="Only alphabets are allowed"
+                        onInput={(e) => {
+                          e.currentTarget.value = e.currentTarget.value.replace(
+                            /[^A-Za-z\s]/g,
+                            ""
+                          );
+                        }}
+                        className="w-full border border-gray-300 rounded-md px-3 py-2 text-xs outline-none focus:border-pink-400"
+                      />
+
+                      <input
+                        type="tel"
+                        name="phone"
+                        placeholder="Phone*"
+                        required
+                        maxLength={10}
+                        pattern="[789]{1}[0-9]{9}"
+                        title="Enter valid 10-digit mobile number"
+                        onInput={(e) => {
+                          e.currentTarget.value = e.currentTarget.value
+                            .replace(/\D/g, "")
+                            .slice(0, 10);
+                        }}
+                        className="w-full border border-gray-300 rounded-md px-3 py-2 text-xs outline-none focus:border-pink-400"
+                      />
+
+                      <select
+                        required
+                        name="treatment"
+                        aria-label="Choose Treatment"
+                        className="w-full border border-gray-300 rounded-md px-3 py-2 text-xs text-gray-500 outline-none focus:border-pink-400"
+                      >
+                        <option value="">--Choose Treatment--</option>
+                        <option value="IVF">IVF</option>
+                        <option value="IUI">IUI</option>
+                        <option value="Altruistic Surrogacy">
+                          Altruistic Surrogacy
+                        </option>
+                      </select>
+
+                      <textarea
+                        name="message"
+                        placeholder="Message"
+                        rows={2}
+                        className="w-full border border-gray-300 rounded-md px-3 py-2 text-xs outline-none focus:border-pink-400 resize-none"
+                      />
+
+                      <button
+                        type="submit"
+                        className="bg-pink-500 hover:bg-pink-600 text-white text-xs font-semibold px-6 py-2 rounded-full mx-auto block transition-colors"
+                      >
+                        Submit
+                      </button>
+
+                    </form>
+                  </>
+                ) : (
+                  <div className="text-center py-6">
+
+                    <div className="text-4xl mb-2">💖</div>
+
+                    <h3 className="text-xl font-bold text-pink-600 mb-2">
+                      Thank You!
+                    </h3>
+
+                    <p className="text-gray-600 text-xs leading-relaxed">
+                      Your consultation request has been submitted successfully.
+                      Our team will contact you shortly.
+                    </p>
+
+                    <button
+                      onClick={() => setSubmitted(false)}
+                      className="mt-4 bg-pink-500 hover:bg-pink-600 text-white text-xs font-semibold px-5 py-2 rounded-full transition-colors"
+                    >
+                     Call us : +91 8851762433
+                    </button>
+
+                  </div>
+                )}
+
+              </div>
             </div>
 
             {related.length > 0 && (
-              <div className="border border-pink-100 rounded-2xl p-5">
+              <div className="border border-pink-100 rounded-2xl p-5 bg-white">
                 <h3 className="font-bold text-gray-800 mb-4 text-xs uppercase tracking-wider">
                   Related Posts
                 </h3>
+
                 <div className="flex flex-col gap-4">
                   {related.map((r) => (
-                    <Link key={r.id} to={`/blog/${r.id}`} className="flex gap-3 group">
+                    <Link
+                      key={r.id}
+                      to={`/blog/${r.id}`}
+                      className="flex gap-3 group"
+                    >
                       <img
                         src={r.image}
                         alt={r.title}
                         className="w-16 h-14 object-cover rounded-xl shrink-0"
                       />
+
                       <div>
                         <p className="text-xs font-semibold text-gray-700 leading-snug group-hover:text-pink-600 transition-colors line-clamp-2">
                           {r.title}
                         </p>
-                        <p className="text-xs text-gray-400 mt-1">{r.date}</p>
+
+                        <p className="text-xs text-gray-400 mt-1">
+                          {r.date}
+                        </p>
                       </div>
                     </Link>
                   ))}
@@ -158,10 +295,11 @@ const BlogDetailPage = () => {
               </div>
             )}
 
-            <div className="border border-pink-100 rounded-2xl p-5">
+            <div className="border border-pink-100 rounded-2xl p-5 bg-white">
               <h3 className="font-bold text-gray-800 mb-4 text-xs uppercase tracking-wider">
                 Categories
               </h3>
+
               <div className="flex flex-wrap gap-2">
                 {(Object.keys(categoryColors) as BlogCategory[]).map((cat) => (
                   <Link
@@ -175,10 +313,11 @@ const BlogDetailPage = () => {
               </div>
             </div>
 
-            <div className="border border-pink-100 rounded-2xl p-5">
+            <div className="border border-pink-100 rounded-2xl p-5 bg-white">
               <h3 className="font-bold text-gray-800 mb-4 text-xs uppercase tracking-wider">
                 All Blogs
               </h3>
+
               <div className="flex flex-col gap-3">
                 {blogs
                   .filter((b) => b.id !== blog.id)

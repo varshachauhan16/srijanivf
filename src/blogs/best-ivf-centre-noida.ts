@@ -13,7 +13,9 @@ const blog: Blog = {
 
   category: "IVF",
 
-  image: Aboutimg,
+  image: blogImg,
+
+  bannerImage: Aboutimg,
 
   intro:
     "Best IVF Centre in Noida – Srijan IVF Introduction – Turning Dreams into Reality For many couples, starting a family is a beautiful dream. But sometimes, nature needs a little helping hand. That’s where IVF (In Vitro Fertilization) steps in as a miracle of modern medicine. If you live in Noida and are searching for the best IVF centre in Noida that combines medical excellence with compassion, Srijan IVF is a name you can trust.",
