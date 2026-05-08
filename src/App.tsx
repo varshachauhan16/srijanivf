@@ -16,6 +16,7 @@ import Appointment from "./components/Appointment.tsx";
 import BlogsPage from "./pages/Blogspage.tsx";
 import BlogDetailPage from "./pages/Blogdetailpage.tsx";
 import SuccessStoriesPage from "./pages/success-stories-video.tsx";
+import IVF from "./pages/treatments/ivf-treatment.tsx";
 
 const queryClient = new QueryClient();
 
@@ -39,6 +40,7 @@ const App = () => (
           <Route path="/Blogspage" element={<BlogsPage />} />
           <Route path="/blog/:slug" element={<BlogDetailPage />} />
           <Route path="/success-stories-video" element={<SuccessStoriesPage />} />
+          <Route path="/treatments/ivf-treatment" element={<IVF />} />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>

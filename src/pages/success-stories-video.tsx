@@ -7,28 +7,52 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 
 const videos = [
   {
-    id: "1",
-    url: "https://www.youtube.com/embed/zJ_VZNU0G_0",
+    id: "7",
+    url: "https://www.youtube.com/embed/dNXcAf2GwsQ",
   },
   {
-    id: "2",
-    url: "https://www.youtube.com/embed/LK6pz9ob5-g",
+    id: "8",
+    url: "https://www.youtube.com/embed/SdslvzarUvE",
   },
   {
-    id: "3",
-    url: "https://www.youtube.com/embed/31JMiGgYN_w",
+    id: "9",
+    url: "https://www.youtube.com/embed/UYZLOk_JeBU",
   },
   {
-    id: "4",
-    url: "https://www.youtube.com/embed/7xCdY3mbOtQ",
+    id: "10",
+    url: "https://www.youtube.com/embed/1NKidMdFr4k",
   },
   {
-    id: "5",
-    url: "https://www.youtube.com/embed/S5WvHdA83IQ",
+    id: "11",
+    url: "https://www.youtube.com/embed/TahDkNL4EEQ",
   },
   {
-    id: "6",
-    url: "https://www.youtube.com/embed/Pp5Jo_1hnWQ",
+    id: "12",
+    url: "https://www.youtube.com/embed/4WAXn1wjvH0",
+  },
+    {
+    id: "13",
+    url: "https://www.youtube.com/embed/sDd7RKUke54",
+  },
+  {
+    id: "14",
+    url: "https://www.youtube.com/embed/mNGE9Sarsak",
+  },
+  {
+    id: "15",
+    url: "https://www.youtube.com/embed/ZnTO2f0L274",
+  },
+  {
+    id: "16",
+    url: "https://www.youtube.com/embed/4C39t775KPw",
+  },
+  {
+    id: "17",
+    url: "https://www.youtube.com/embed/lulzcH5592w",
+  },
+  {
+    id: "18",
+    url: "https://www.youtube.com/embed/_DUPPHC5M8g",
   },
 ];
 
@@ -66,9 +90,9 @@ const SuccessStoriesPage = () => {
       <section className="py-20 bg-[#f8f8f8]">
         <div className="container mx-auto px-4 md:px-6">
           <div className="text-center mb-14">
-            <h2 className="text-3xl md:text-5xl font-bold text-pink-600 leading-tight">
+            <h3 className="text-3xl md:text-5xl font-bold text-pink-600 leading-tight">
               Patient Video Testimonials
-            </h2>
+            </h3>
 
             <p className="text-gray-500 mt-4 max-w-3xl mx-auto text-sm md:text-base leading-relaxed">
               Hear directly from our patients about their IVF journey,
