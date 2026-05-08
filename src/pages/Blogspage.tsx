@@ -4,17 +4,17 @@ import Footer from "@/components/Footer";
 import Callus from "@/components/callbtn";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import bannerImg from "@/assets/About-us-banner.jpg";
-import { blogs, BlogCategory } from "@/blogs";
+import { blogs } from "@/blogs";
 
 // ─── To add a new blog: create a file in src/blogs/ and add it to src/blogs/index.ts ───
 
-const categoryColors: Record<BlogCategory, string> = {
-  IVF: "bg-pink-100 text-pink-600",
-  IUI: "bg-orange-100 text-orange-600",
-  Doctors: "bg-purple-100 text-purple-600",
-  "Women's Health": "bg-rose-100 text-rose-600",
-  "Male Infertility": "bg-blue-100 text-blue-600",
-};
+// const categoryColors: Record<BlogCategory, string> = {
+//   IVF: "bg-pink-100 text-pink-600",
+//   IUI: "bg-orange-100 text-orange-600",
+//   Doctors: "bg-purple-100 text-purple-600",
+//   "Women's Health": "bg-rose-100 text-rose-600",
+//   "Male Infertility": "bg-blue-100 text-blue-600",
+// };
 
 const BlogsPage = () => {
   return (
@@ -54,7 +54,7 @@ const BlogsPage = () => {
               </div>
 
               <div className="p-5 md:p-8">
-                <div className="flex flex-wrap items-center gap-3 mb-3">
+                {/* <div className="flex flex-wrap items-center gap-3 mb-3">
                   <span
                     className={`text-xs font-semibold px-3 py-1 rounded-full ${categoryColors[blog.category]
                       }`}
@@ -62,7 +62,7 @@ const BlogsPage = () => {
                     {blog.category}
                   </span>
                   <span className="text-xs text-gray-400">{blog.date}</span>
-                </div>
+                </div> */}
 
                 <h2 className="text-lg md:text-xl font-bold text-pink-600 mb-3 leading-snug">
                   {blog.title}

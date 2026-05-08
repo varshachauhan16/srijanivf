@@ -8,11 +8,6 @@ const blog: Blog = {
 
   title:
     "Best IVF Centre in Noida – Top Fertility Clinics to Help You Conceive Naturally",
-
-  date: "May 2, 2025",
-
-  category: "IVF",
-
   image: blogImg,
 
   bannerImage: Aboutimg,

@@ -4,17 +4,17 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Callus from "@/components/callbtn";
 import WhatsAppButton from "@/components/WhatsAppButton";
-import { blogs, BlogCategory } from "@/blogs";
+import { blogs } from "@/blogs";
 import { renderContent } from "@/lib/rendercontent";
 import bannerImg from "@/assets/About-us-banner.jpg";
 
-const categoryColors: Record<BlogCategory, string> = {
-  IVF: "bg-pink-100 text-pink-600",
-  IUI: "bg-orange-100 text-orange-600",
-  Doctors: "bg-purple-100 text-purple-600",
-  "Women's Health": "bg-rose-100 text-rose-600",
-  "Male Infertility": "bg-blue-100 text-blue-600",
-};
+// const categoryColors: Record<BlogCategory, string> = {
+//   IVF: "bg-pink-100 text-pink-600",
+//   IUI: "bg-orange-100 text-orange-600",
+//   Doctors: "bg-purple-100 text-purple-600",
+//   "Women's Health": "bg-rose-100 text-rose-600",
+//   "Male Infertility": "bg-blue-100 text-blue-600",
+// };
 
 const BlogDetailPage = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -44,8 +44,9 @@ const BlogDetailPage = () => {
   }
 
   const related = blogs
-    .filter((b) => b.id !== blog.id && b.category === blog.category)
+    .filter((b) => b.id !== blog.id)
     .slice(0, 2);
+
   const [submitted, setSubmitted] = useState(false);
   return (
     <>
@@ -65,14 +66,14 @@ const BlogDetailPage = () => {
           >
             ← Back to Blogs
           </Link>
-          <div className="flex flex-wrap items-center gap-3 mb-3">
+          {/* <div className="flex flex-wrap items-center gap-3 mb-3">
             <span
               className={`text-xs font-semibold px-3 py-1 rounded-full bg-pink-600 text-white`}
             >
               {blog.category}
             </span>
             <span className="text-white/60 text-xs">{blog.date}</span>
-          </div>
+          </div> */}
           <h1 className="text-xl md:text-4xl font-bold text-white leading-snug">
             {blog.title}
           </h1>
@@ -118,7 +119,7 @@ const BlogDetailPage = () => {
             </div>
           </article>
 
-          <aside className="w-full md:w-[300px] shrink-0 flex flex-col gap-4 md:sticky md:top-24 self-start">
+          <aside className="w-full md:w-[300px] shrink-0 flex flex-col gap-4  md:top-24 self-start">
 
             <div className="bg-pink-200 rounded-[24px] p-3 shadow-sm">
               <div className="bg-white rounded-[20px] p-4">
@@ -252,7 +253,7 @@ const BlogDetailPage = () => {
                       onClick={() => setSubmitted(false)}
                       className="mt-4 bg-pink-500 hover:bg-pink-600 text-white text-xs font-semibold px-5 py-2 rounded-full transition-colors"
                     >
-                     Call us : +91 8851762433
+                      Call us : +91 8851762433
                     </button>
 
                   </div>
@@ -285,9 +286,9 @@ const BlogDetailPage = () => {
                           {r.title}
                         </p>
 
-                        <p className="text-xs text-gray-400 mt-1">
+                        {/* <p className="text-xs text-gray-400 mt-1">
                           {r.date}
-                        </p>
+                        </p> */}
                       </div>
                     </Link>
                   ))}
@@ -295,7 +296,7 @@ const BlogDetailPage = () => {
               </div>
             )}
 
-            <div className="border border-pink-100 rounded-2xl p-5 bg-white">
+            {/* <div className="border border-pink-100 rounded-2xl p-5 bg-white">
               <h3 className="font-bold text-gray-800 mb-4 text-xs uppercase tracking-wider">
                 Categories
               </h3>
@@ -311,7 +312,7 @@ const BlogDetailPage = () => {
                   </Link>
                 ))}
               </div>
-            </div>
+            </div> */}
 
             <div className="border border-pink-100 rounded-2xl p-5 bg-white">
               <h3 className="font-bold text-gray-800 mb-4 text-xs uppercase tracking-wider">
