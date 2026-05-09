@@ -30,28 +30,28 @@ const centres = [
     city: "Delhi",
     address:
       "Mayur Vihar Phase 2 – Shop No.2, Khasra No. 585, Kalyan Vyas, 202/1, Khichripur Rd, Mayur Vihar Phase I, Kalyanvas, Kalyan Puri, Delhi, 110091",
-    phone: "+91-8851762433",
+    phone: "+91-9711748080",
     email: "info@srijanivfcentre.com",
   },
   {
     city: "Indirapuram",
     address:
       "Plot Number – 7, Abhay Khand 1, Indirapuram, Ghaziabad, Uttar Pradesh 201014",
-    phone: "+91-8851762433",
+    phone: "+91-9711748080",
     email: "info@srijanivfcentre.com",
   },
   {
     city: "Varanasi",
     address:
       "Heiwel Hospital, National Highway 56, Airport Road, near Sant Atulanand, Gilat Bazar, Chotta Chuppepur, Varanasi, Uttar Pradesh 221002.",
-    phone: "+91-8851762433",
+    phone: "+91-9711748080",
     email: "info@srijanivfcentre.com",
   },
   {
     city: "Srinagar",
     address:
       "The Kidney and Urological Diseases Research Centre, Sonwar Bagh, opposite Amar Singh Club, Srinagar 190001.",
-    phone: "+91-8851762433",
+    phone: "+91-9711748080",
     email: "info@srijanivfcentre.com",
   },
 ];

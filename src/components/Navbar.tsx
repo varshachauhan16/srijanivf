@@ -11,7 +11,6 @@ import logo from "@/assets/srijanivf_logoNew.webp";
 
 const links = [
   { href: "/", label: "Home" },
-  { href: "/about-us", label: "About" },
   { href: "#", label: "Treatments" },
   { href: "/doctors", label: "Doctors" },
   { href: "/centre", label: "Centre" },
@@ -185,11 +184,11 @@ const Navbar = () => {
 
         <div className="hidden lg:flex items-center gap-3">
           <a
-            href="tel:+918851762433"
+            href="tel:+919711748080"
             className="flex items-center gap-2 bg-pink-600 hover:bg-pink-700 text-white px-5 py-2.5 rounded-full text-sm font-semibold shadow-md transition-all duration-300"
           >
             <Phone className="h-4 w-4" />
-            +91 8851762433
+            +91 9711748080
           </a>
         </div>
 
@@ -211,14 +210,6 @@ const Navbar = () => {
               className="block py-3"
             >
               Home
-            </Link>
-
-            <Link
-              to="/about-us"
-              onClick={() => setOpen(false)}
-              className="block py-3"
-            >
-              About
             </Link>
 
             <div className="border-b border-pink-100 py-2">
@@ -365,11 +356,11 @@ const Navbar = () => {
 
             <div className="pt-5">
               <a
-                href="tel:+918851762433"
+                href="tel:+919711748080"
                 className="flex items-center justify-center gap-2 bg-pink-600 hover:bg-pink-700 text-white px-5 py-3 rounded-full text-sm font-semibold transition-all duration-300"
               >
                 <Phone className="h-4 w-4" />
-                +91 8851762433
+                +91 9711748080
               </a>
             </div>
 

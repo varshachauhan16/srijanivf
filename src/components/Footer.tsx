@@ -73,48 +73,57 @@ const Footer = () => {
           </div>
 
           <div>
-            <h4 className="font-semibold mb-4 text-sm">Quick Links</h4>
+            <h4 className="font-semibold mb-4 text-sm">Useful Links</h4>
+
             <ul className="space-y-2 text-sm text-white/80">
-
               <li>
-                <Link to="/about-us" className="hover:text-white transition">
-                  About
+                <Link to="/" className="hover:text-white transition flex items-center gap-2">
+                  <span>»</span> Home
                 </Link>
               </li>
 
               <li>
-                <Link to="/centres" className="hover:text-white transition">
-                  Centres
+                <Link to="/about-us" className="hover:text-white transition flex items-center gap-2">
+                  <span>»</span> About
                 </Link>
               </li>
 
               <li>
-                <Link to="/doctors" className="hover:text-white transition">
-                  Doctors
+                <Link to="/testimonials" className="hover:text-white transition flex items-center gap-2">
+                  <span>»</span> Testimonials
                 </Link>
               </li>
 
               <li>
-                <Link to="/testimonials" className="hover:text-white transition">
-                  Testimonials
+                <Link to="/Blogspage" className="hover:text-white transition flex items-center gap-2">
+                  <span>»</span> Blogs
                 </Link>
               </li>
 
               <li>
-                <Link to="/blog" className="hover:text-white transition">
-                  Blog
+                <Link to="/contact-us" className="hover:text-white transition flex items-center gap-2">
+                  <span>»</span> Contact Us
                 </Link>
               </li>
 
+              <li>
+                <Link to="/privacy-policy" className="hover:text-white transition flex items-center gap-2">
+                  <span>»</span> Privacy Policy
+                </Link>
+              </li>
             </ul>
           </div>
-
           <div>
             <h4 className="font-semibold mb-4 text-sm">Centres</h4>
             <ul className="space-y-2 text-sm text-white/80">
               {["Delhi", "Indirapuram"].map((l) => (
                 <li key={l}>
-                  <a href="#centres" className="hover:text-white transition">{l}</a>
+                  <a
+                    href="/our-centres"
+                    className="hover:text-white transition flex items-center gap-2"
+                  >
+                    <span>»</span> {l}
+                  </a>
                 </li>
               ))}
             </ul>
@@ -129,29 +138,40 @@ const Footer = () => {
               </li>
               <li className="flex gap-3">
                 <Phone className="h-4 w-4 mt-0.5 text-white shrink-0" />
-                <a href="tel:+918851762433" className="hover:underline">+91 8851762433</a>
+                <a href="tel:+919711748080" className="hover:underline">+91 9711748080</a>
               </li>
               <li className="flex gap-3">
                 <Mail className="h-4 w-4 mt-0.5 text-white shrink-0" />
                 info@srijanivfcentre.com
-              </li>
-              <li className="flex gap-3">
-                <Clock className="h-4 w-4 mt-0.5 text-white shrink-0" />
-                9:00am – 7:00pm
               </li>
             </ul>
           </div>
 
         </div>
 
-        <div className="container mx-auto border-t border-white/20 mt-12 pt-6 text-center text-sm text-white/70 pb-20 md:pb-0">
-          © {new Date().getFullYear()} Srijan IVF. All rights reserved.
+        <div className="container mx-auto border-t border-white/20 mt-12 pt-6 text-center text-sm text-white/70 pb-20 md:pb-0 px-4">
+
+          <p className="mb-3">
+            © {new Date().getFullYear()} Srijan IVF. All rights reserved.
+          </p>
+
+          <p className="text-xs md:text-sm leading-relaxed max-w-5xl mx-auto text-white/80">
+            <span className="font-semibold text-white">
+              Disclaimer:
+            </span>{" "}
+            Srijan IVF strictly complies with the PCPNDT Act, 1994 and ART (Regulation) Act, 2021.
+            Gender selection and sex determination are strictly prohibited under Indian law.
+            We do not support or engage in any such practices.
+            All fertility services are provided only at registered clinics by licensed medical professionals
+            as per applicable laws and regulations.
+          </p>
+
         </div>
       </footer>
 
       <div className="fixed bottom-0 left-0 right-0 z-40 flex md:hidden shadow-[0_-2px_12px_rgba(0,0,0,0.15)]">
         <a
-          href="tel:+918851762433"
+          href="tel:+919711748080"
           className="flex-1 flex items-center justify-center gap-2 font-semibold text-sm py-4 transition active:opacity-80"
           style={{ backgroundColor: "#b5446a", color: "#fff" }}
         >

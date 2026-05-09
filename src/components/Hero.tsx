@@ -62,7 +62,7 @@ const Hero = () => {
                 Book Free Consultation <ArrowRight className="ml-1 h-5 w-5" />
               </Button>
               <Button variant="outline" size="xl" asChild>
-                <a href="tel:+918851762433">
+                <a href="tel:+919711748080">
                   <Phone className="mr-1 h-5 w-5" /> Call Now
                 </a>
               </Button>
@@ -254,10 +254,10 @@ const handleSubmit = async (e: React.FormEvent) => {
           Our agent will contact you within <b>15 minutes</b>.
         </p>
         <a
-          href="tel:+918851762433"
+          href="tel:+919711748080"
           className="block w-full bg-primary text-white py-2 rounded-xl text-sm font-medium hover:opacity-90 transition"
         >
-          Call Now: 8851762433
+          Call Now: 9711748080
         </a>
       </div>
     );
