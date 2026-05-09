@@ -17,6 +17,12 @@ import BlogsPage from "./pages/Blogspage.tsx";
 import BlogDetailPage from "./pages/Blogdetailpage.tsx";
 import SuccessStoriesPage from "./pages/success-stories-video.tsx";
 import IVF from "./pages/treatments/ivf-treatment.tsx";
+import IUI from "./pages/treatments/iui-treatment.tsx";
+import ICSI from "./pages/treatments/icsi-treatment.tsx";
+import HysteroscopyPage from "./pages/treatments/hysteroscopy.tsx";
+import MaleInfertilityPage from "./pages/treatments/male-infertility.tsx";
+import TesaPesaPage from "./pages/treatments/tesa-pesa.tsx";
+import PICSI from "./pages/treatments/picsi-treatment.tsx";
 
 const queryClient = new QueryClient();
 
@@ -41,6 +47,12 @@ const App = () => (
           <Route path="/blog/:slug" element={<BlogDetailPage />} />
           <Route path="/success-stories-video" element={<SuccessStoriesPage />} />
           <Route path="/treatments/ivf-treatment" element={<IVF />} />
+          <Route path="/treatments/iui-treatment" element={<IUI />} />
+          <Route path="/treatments/icsi-treatment" element={<ICSI />} />
+          <Route path="/treatments/hysteroscopy" element={<HysteroscopyPage />} /> 
+          <Route path="/treatments/male-infertility" element={<MaleInfertilityPage />} />
+          <Route path="/treatments/tesa-pesa" element={<TesaPesaPage />} />
+          <Route path="/treatments/picsi-treatment" element={<PICSI />} />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>

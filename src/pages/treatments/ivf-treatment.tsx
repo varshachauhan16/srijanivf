@@ -28,31 +28,31 @@ const faqs = [
     q: "1. What are the IVF medication costs?",
     a: "IVF medication costs can vary depending on the specific medications used, dosage, and duration of treatment. On average, medication for a single IVF cycle can range from $3,000 to $5,000 USD (₹30,000 to ₹50,000 INR in 2024). It's important to discuss medication costs with your fertility clinic during the consultation process.",
   },
-{
-  q: "2. What are the IVF success rates by age?",
-  a: (
-    <ul className="list-disc pl-5 space-y-2">
-      <li>
-        <strong>Women under 35:</strong> Highest success rates,
-        typically around 40-50%
-      </li>
+  {
+    q: "2. What are the IVF success rates by age?",
+    a: (
+      <ul className="list-disc pl-5 space-y-2">
+        <li>
+          <strong>Women under 35:</strong> Highest success rates,
+          typically around 40-50%
+        </li>
 
-      <li>
-        <strong>Women 35-37:</strong> Success rates start to decline,
-        ranging from 30-40%
-      </li>
+        <li>
+          <strong>Women 35-37:</strong> Success rates start to decline,
+          ranging from 30-40%
+        </li>
 
-      <li>
-        <strong>Women 38-40:</strong> Success rates drop further,
-        typically around 20-30%
-      </li>
+        <li>
+          <strong>Women 38-40:</strong> Success rates drop further,
+          typically around 20-30%
+        </li>
 
-      <li>
-        <strong>Women over 40:</strong> Success rates fall below 10%
-      </li>
-    </ul>
-  ),
-},
+        <li>
+          <strong>Women over 40:</strong> Success rates fall below 10%
+        </li>
+      </ul>
+    ),
+  },
 ]
 
 const IVFTreatmentPage = () => {
@@ -61,15 +61,15 @@ const IVFTreatmentPage = () => {
   return (
     <>
       <Navbar />
-      <section className="relative w-full h-[35vh] md:h-[45vh] flex items-center justify-center text-center">
+      <section className="relative w-full h-[60vh] flex items-center justify-center text-center">
         <img
           src={bannerImg}
           alt="IVF Treatment"
           className="absolute inset-0 w-full h-full object-cover brightness-40"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/30 to-black/50" />
-        <div className="relative z-10 text-white px-4">
-          <h1 className="text-3xl md:text-5xl font-bold">In Vitro Fertilization (IVF)</h1>
+        <div className="absolute inset-0 bg-gradient-to-b from-pink-900/40 to-black/50" />
+        <div className="relative z-10 text-white px-4 max-w-3xl mx-auto">
+          <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-5">In Vitro Fertilization<br /> (IVF)</h1>
         </div>
       </section>
       <section className="py-14 md:py-20 px-4 md:px-10 bg-white">
@@ -132,7 +132,6 @@ const IVFTreatmentPage = () => {
       <section className="py-14 md:py-20 px-4 md:px-10 bg-white">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-10 md:gap-16 items-center">
 
-          {/* Text */}
           <div className="flex-1 order-2 md:order-1">
             <h2 className="text-xl md:text-2xl font-bold text-pink-600 mb-2">
               Cost of IVF Procedure 2026
@@ -193,7 +192,6 @@ const IVFTreatmentPage = () => {
             />
           </div>
 
-          {/* Text */}
           <div className="flex-1">
             <h2 className="text-xl md:text-2xl font-bold text-pink-600 mb-2">
               Financing options for IVF Treatment
