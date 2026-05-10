@@ -92,8 +92,8 @@ const Navbar = () => {
   return (
     <header
       className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${scrolled
-          ? "bg-white/90 backdrop-blur-lg shadow-md"
-          : "bg-transparent"
+        ? "bg-white/90 backdrop-blur-lg shadow-md"
+        : "bg-transparent"
         }`}
     >
       <nav className="container mx-auto flex items-center justify-between py-4 px-4">
@@ -232,17 +232,17 @@ const Navbar = () => {
               {showTreatments && (
                 <div className="mt-2 space-y-3">
 
-                  {treatmentCategories.map((category) => (
+                  {treatmentCategories.map((category, index) => (
                     <div
-                      key={category.slug}
+                      key={category.title}
                       className="border border-pink-100 rounded-2xl overflow-hidden"
                     >
                       <button
                         onClick={() =>
                           setOpenCategory(
-                            openCategory === category.slug
+                            openCategory === category.title
                               ? null
-                              : category.slug
+                              : category.title
                           )
                         }
                         className="w-full flex items-center justify-between px-4 py-4 bg-pink-50"
@@ -253,13 +253,13 @@ const Navbar = () => {
 
                         <ChevronDown
                           className={`h-4 w-4 transition-transform ${openCategory === category.slug
-                              ? "rotate-180"
-                              : ""
+                            ? "rotate-180"
+                            : ""
                             }`}
                         />
                       </button>
 
-                      {openCategory === category.slug && (
+                      {openCategory === category.title && (
                         <div className="bg-white py-2">
 
                           {category.items.map((item) => (
