@@ -24,6 +24,10 @@ import MaleInfertilityPage from "./pages/treatments/male-infertility.tsx";
 import TesaPesaPage from "./pages/treatments/tesa-pesa.tsx";
 import PICSI from "./pages/treatments/picsi-treatment.tsx";
 import PrivacyPolicy from "./pages/privacy-policy.tsx";
+import LAH from "./pages/treatments/lah-treatment.tsx";
+import ERA from "./pages/treatments/era-treatment.tsx";
+import SemenAnalysis from "./pages/treatments/semen-analysis.tsx";
+import BlastocystCulture from "./pages/treatments/blastocyst-culture.tsx";
 
 const queryClient = new QueryClient();
 
@@ -55,6 +59,10 @@ const App = () => (
           <Route path="/treatments/tesa-pesa" element={<TesaPesaPage />} />
           <Route path="/treatments/picsi-treatment" element={<PICSI />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/treatments/lah-treatment" element={<LAH />} />
+          <Route path="/treatments/era-treatment" element={<ERA />} />
+          <Route path="/treatments/semen-analysis" element={<SemenAnalysis />} />
+          <Route path="/treatments/blastocyst-culture" element={<BlastocystCulture />} />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>
