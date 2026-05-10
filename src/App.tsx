@@ -28,6 +28,17 @@ import LAH from "./pages/treatments/lah-treatment.tsx";
 import ERA from "./pages/treatments/era-treatment.tsx";
 import SemenAnalysis from "./pages/treatments/semen-analysis.tsx";
 import BlastocystCulture from "./pages/treatments/blastocyst-culture.tsx";
+import LaparoscopicGynecology from "./pages/treatments/laparoscopic-gynecology.tsx";
+import GeneralGynecology from "./pages/treatments/general-gynecology.tsx";
+import RoboticGynecology from "./pages/treatments/robotic-gynecology.tsx";
+import AdolescentCare from "./pages/treatments/adolescent-care.tsx";
+import MenopauseTreatment from "./pages/treatments/menopause-treatment.tsx";
+import PcosTreatment from "./pages/treatments/pcos-treatment.tsx";
+import EndometriosisTreatment from "./pages/treatments/endometriosis-treatment.tsx";
+import CaesareanSection from "./pages/treatments/caesarean-section.tsx";
+import HighRiskPregnancy from "./pages/treatments/high-risk-pregnancy.tsx"
+import LowRiskPregnancy from "./pages/treatments/low-risk-pregnancy.tsx";
+import NormalDelivery from "./pages/treatments/normal-delivery.tsx";
 
 const queryClient = new QueryClient();
 
@@ -63,6 +74,17 @@ const App = () => (
           <Route path="/treatments/era-treatment" element={<ERA />} />
           <Route path="/treatments/semen-analysis" element={<SemenAnalysis />} />
           <Route path="/treatments/blastocyst-culture" element={<BlastocystCulture />} />
+          <Route path="/treatments/laparoscopic-gynecology" element={<LaparoscopicGynecology />} />
+          <Route path="/treatments/general-gynecology" element={<GeneralGynecology />} />
+          <Route path="/treatments/robotic-gynecology" element={<RoboticGynecology />} />
+          <Route path="/treatments/adolescent-care" element={<AdolescentCare />} />
+          <Route path="/treatments/menopause-treatment" element={<MenopauseTreatment />} />
+          <Route path="/treatments/pcos-treatment" element={<PcosTreatment />} />
+          <Route path="/treatments/endometriosis-treatment" element={<EndometriosisTreatment />} />
+          <Route path="/treatments/caesarean-section" element={<CaesareanSection />} />
+          <Route path="/treatments/high-risk-pregnancy" element={<HighRiskPregnancy/>} />
+          <Route path="/treatments/low-risk-pregnancy" element={<LowRiskPregnancy/>} />
+          <Route path="/treatments/normal-delivery" element={<NormalDelivery />} />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>
