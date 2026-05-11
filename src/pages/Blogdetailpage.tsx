@@ -2,7 +2,7 @@ import { useParams, Link } from "react-router-dom";
 import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import Callus from "@/components/callbtn";
+//import Callus from "@/components/callbtn";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import { blogs } from "@/blogs";
 import { renderContent } from "@/lib/rendercontent";
@@ -279,7 +279,7 @@ const BlogDetailPage = () => {
                       onClick={() => setSubmitted(false)}
                       className="mt-4 bg-pink-500 hover:bg-pink-600 text-white text-xs font-semibold px-5 py-2 rounded-full transition-colors"
                     >
-                      Call us : +91 9711748080
+                      Call us : +91 97117 48080
                     </button>
 
                   </div>
@@ -365,7 +365,7 @@ const BlogDetailPage = () => {
         </div>
       </section>
 
-      <Callus />
+      
       <WhatsAppButton />
       <Footer />
     </>

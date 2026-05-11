@@ -2,7 +2,7 @@ import Navbar from "@/components/Navbar";
 import Reviews from "@/components/Reviews";
 import Testimonials from "@/components/Testimonials";
 import Footer from "@/components/Footer";
-import Callus from "@/components/callbtn";
+//import Callus from "@/components/callbtn";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import bannerImg from "@/assets/About-us-banner.jpg";
 
@@ -32,7 +32,7 @@ const testimonialspage = () => {
       </section>
       <Testimonials />
       <Reviews />
-      <Callus />
+      
       <WhatsAppButton />
       <Footer />
     </>

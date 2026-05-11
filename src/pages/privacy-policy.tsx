@@ -1,7 +1,7 @@
 import aboutImg from "@/assets/About-us-banner.jpg";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import Callus from "@/components/callbtn";
+//import Callus from "@/components/callbtn";
 import WhatsAppButton from "@/components/WhatsAppButton";
 
 const PrivacyPolicy = () => {
@@ -368,7 +368,7 @@ const PrivacyPolicy = () => {
         </div>
       </section>
 
-      <Callus />
+      
       <WhatsAppButton />
       <Footer />
     </>

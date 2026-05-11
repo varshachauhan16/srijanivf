@@ -215,10 +215,10 @@ const Appointment = () => {
                   </p>
 
                   <a
-                    href="tel:+919711748080"
+                    href="tel:+9197117 48080"
                     className="text-sm font-semibold text-pink-600 mt-0.5 block hover:underline"
                   >
-                    +91-9711748080
+                    +91-97117 48080
                   </a>
                 </div>
               </div>

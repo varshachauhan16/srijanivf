@@ -7,24 +7,43 @@ const STORAGE_KEY = "lead_submitted_time";
 const ONE_DAY = 24 * 60 * 60 * 1000;
 const RESHOW_DELAY = 15 * 60 * 1000;
 
-type FormState = { name: string; phone: string };
+type FormState = {
+  name: string;
+  phone: string;
+  treatment: string;
+};
+
 type FormErrors = Partial<Record<keyof FormState, string>>;
 
 interface LeadPopupProps {
-  onClose?: () => void; // optional — Hero button se aaye tab use hoga
+  onClose?: () => void;
 }
 
 const LeadPopup = ({ onClose }: LeadPopupProps) => {
   const [open, setOpen] = useState(false);
+
   const [loading, setLoading] = useState(false);
-  const [form, setForm] = useState<FormState>({ name: "", phone: "" });
+
+  const [form, setForm] = useState<FormState>({
+    name: "",
+    phone: "",
+    treatment: "",
+  });
+
   const [errors, setErrors] = useState<FormErrors>({});
+
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
   const { toast } = useToast();
 
   const scheduleReshow = () => {
-    if (timerRef.current) clearTimeout(timerRef.current);
-    timerRef.current = setTimeout(() => setOpen(true), RESHOW_DELAY);
+    if (timerRef.current) {
+      clearTimeout(timerRef.current);
+    }
+
+    timerRef.current = setTimeout(() => {
+      setOpen(true);
+    }, RESHOW_DELAY);
   };
 
   useEffect(() => {
@@ -34,18 +53,31 @@ const LeadPopup = ({ onClose }: LeadPopupProps) => {
     }
 
     const now = Date.now();
-    const submittedTime = Number(localStorage.getItem(STORAGE_KEY) || 0);
-    if (submittedTime && now - submittedTime < ONE_DAY) return;
 
-    const timer = setTimeout(() => setOpen(true), 3000);
+    const submittedTime = Number(
+      localStorage.getItem(STORAGE_KEY) || 0
+    );
+
+    if (submittedTime && now - submittedTime < ONE_DAY) {
+      return;
+    }
+
+    const timer = setTimeout(() => {
+      setOpen(true);
+    }, 3000);
+
     return () => {
       clearTimeout(timer);
-      if (timerRef.current) clearTimeout(timerRef.current);
+
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+      }
     };
   }, [onClose]);
 
   const handleClose = () => {
     setOpen(false);
+
     setErrors({});
 
     if (onClose) {
@@ -55,31 +87,77 @@ const LeadPopup = ({ onClose }: LeadPopupProps) => {
     }
   };
 
-  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleNameChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
     const val = e.target.value;
+
     if (/^[a-zA-Z\s]*$/.test(val)) {
-      setForm((prev) => ({ ...prev, name: val }));
-      setErrors((prev) => ({ ...prev, name: "" }));
+      setForm((prev) => ({
+        ...prev,
+        name: val,
+      }));
+
+      setErrors((prev) => ({
+        ...prev,
+        name: "",
+      }));
     }
   };
 
-  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const val = e.target.value.replace(/\D/g, "").slice(0, 10);
-    setForm((prev) => ({ ...prev, phone: val }));
-    setErrors((prev) => ({ ...prev, phone: "" }));
+  const handlePhoneChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const val = e.target.value
+      .replace(/\D/g, "")
+      .slice(0, 10);
+
+    setForm((prev) => ({
+      ...prev,
+      phone: val,
+    }));
+
+    setErrors((prev) => ({
+      ...prev,
+      phone: "",
+    }));
+  };
+
+  const handleTreatmentChange = (
+    e: React.ChangeEvent<HTMLSelectElement>
+  ) => {
+    setForm((prev) => ({
+      ...prev,
+      treatment: e.target.value,
+    }));
   };
 
   const validate = (): FormErrors => {
     const newErrors: FormErrors = {};
-    if (!form.name.trim()) newErrors.name = "Name is required";
-    else if (form.name.trim().length < 2) newErrors.name = "Name must be at least 2 characters";
-    if (!form.phone) newErrors.phone = "Phone number is required";
-    else if (form.phone.length !== 10) newErrors.phone = "Phone number must be exactly 10 digits";
-    else if (!/^[789]/.test(form.phone)) newErrors.phone = "Phone number must start with 7, 8, or 9";
+
+    if (!form.name.trim()) {
+      newErrors.name = "Name is required";
+    } else if (form.name.trim().length < 2) {
+      newErrors.name =
+        "Name must be at least 2 characters";
+    }
+
+    if (!form.phone) {
+      newErrors.phone = "Phone number is required";
+    } else if (form.phone.length !== 10) {
+      newErrors.phone =
+        "Phone number must be exactly 10 digits";
+    } else if (!/^[6789]/.test(form.phone)) {
+      newErrors.phone =
+        "Phone number must start with 6, 7, 8, or 9";
+    }
+
     return newErrors;
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (
+    e: React.FormEvent
+  ) => {
     e.preventDefault();
 
     const newErrors = validate();
@@ -89,69 +167,80 @@ const LeadPopup = ({ onClose }: LeadPopupProps) => {
       return;
     }
 
-    try {
-      setLoading(true);
+    setLoading(true);
 
+    const payload = {
+      name: form.name,
+      phone: form.phone,
+      treatment: form.treatment,
+    };
+
+    localStorage.setItem(
+      STORAGE_KEY,
+      Date.now().toString()
+    );
+
+    setOpen(false);
+
+    toast({
+      title: "Submitted successfully 🎉",
+    });
+
+    setTimeout(() => {
+      if (onClose) {
+        onClose();
+      }
+
+      window.location.href = "/thank-you";
+    }, 500);
+
+    try {
       const formData = new FormData();
 
-      formData.append("name", form.name);
-      formData.append("mobile", form.phone);
+      formData.append("name", payload.name);
+      formData.append("mobile", payload.phone);
       formData.append("source_name", "LeadPopup");
       formData.append("city_name", "Delhi");
 
-      const response = await fetch(
+      if (payload.treatment) {
+        formData.append(
+          "treatment",
+          payload.treatment
+        );
+      }
+
+      fetch(
         "https://api.srijanivfcentre.com/api/v1/lead/generate-lead/",
         {
           method: "POST",
           body: formData,
         }
-      );
-
-      const data = await response.json();
-
-      console.log(data);
-
-      if (response.ok) {
-        if (timerRef.current) clearTimeout(timerRef.current);
-
-        localStorage.setItem(STORAGE_KEY, Date.now().toString());
-
-        toast({ title: "Submitted successfully 🎉" });
-
-        setTimeout(() => {
-          setOpen(false);
-          setLoading(false);
-
-          if (onClose) onClose();
-
-          window.location.href = "/thank-you";
-        }, 800);
-      } else {
-        setLoading(false);
-        toast({
-          title: "Something went wrong",
-        });
-      }
+      ).catch((err) => {
+        console.log(err);
+      });
     } catch (error) {
       console.log(error);
-
+    } finally {
       setLoading(false);
-
-      toast({
-        title: "Server Error",
-      });
     }
   };
 
-  const ErrMsg = ({ msg }: { msg?: string }): React.ReactElement | null =>
-    msg ? <p className="text-[11px] text-red-500 mt-0.5 ml-1">{msg}</p> : null;
+  const ErrMsg = ({
+    msg,
+  }: {
+    msg?: string;
+  }): React.ReactElement | null =>
+    msg ? (
+      <p className="text-[11px] text-red-500 mt-0.5 ml-1">
+        {msg}
+      </p>
+    ) : null;
 
   if (!open) return null;
 
   return (
     <div className="fixed inset-0 z-50 grid place-items-center bg-black/50 backdrop-blur-sm p-4">
       <div className="relative w-full max-w-md bg-white rounded-3xl shadow-xl overflow-hidden">
-
         <button
           onClick={handleClose}
           aria-label="Close"
@@ -160,25 +249,44 @@ const LeadPopup = ({ onClose }: LeadPopupProps) => {
           <X className="h-4 w-4" />
         </button>
 
-        <div className="p-6 text-white" style={{ backgroundColor: "#e1658a" }}>
+        <div
+          className="p-6 text-white"
+          style={{ backgroundColor: "#e1658a" }}
+        >
           <div className="flex items-center gap-2">
             <Heart className="h-5 w-5" />
-            <span className="text-xs uppercase font-semibold">Limited Slots</span>
+
+            <span className="text-xs uppercase font-semibold">
+              Limited Slots
+            </span>
           </div>
-          <h3 className="mt-3 text-2xl font-semibold">Get a Free IVF Consultation</h3>
-          <p className="text-sm opacity-90 mt-1">Speak with expert — No cost, No commitment.</p>
+
+          <h3 className="mt-3 text-2xl font-semibold">
+            Get a Free IVF Consultation
+          </h3>
+
+          <p className="text-sm opacity-90 mt-1">
+            Speak with expert — No cost, No commitment.
+          </p>
         </div>
 
-        <form onSubmit={handleSubmit} noValidate className="p-6 space-y-3">
-
+        <form
+          onSubmit={handleSubmit}
+          noValidate
+          className="p-6 space-y-3"
+        >
           <div>
             <input
               value={form.name}
               onChange={handleNameChange}
               placeholder="Your name"
-              className={`w-full px-4 py-3 rounded-xl border outline-none transition focus:ring-2 ${errors.name ? "border-red-400 focus:ring-red-200" : "focus:ring-pink-200 focus:border-pink-400"
-                }`}
+              className={`w-full px-4 py-3 rounded-xl border outline-none transition focus:ring-2 ${
+                errors.name
+                  ? "border-red-400 focus:ring-red-200"
+                  : "focus:ring-pink-200 focus:border-pink-400"
+              }`}
             />
+
             <ErrMsg msg={errors.name} />
           </div>
 
@@ -189,20 +297,33 @@ const LeadPopup = ({ onClose }: LeadPopupProps) => {
               placeholder="Phone number"
               inputMode="numeric"
               maxLength={10}
-              className={`w-full px-4 py-3 rounded-xl border outline-none transition focus:ring-2 ${errors.phone ? "border-red-400 focus:ring-red-200" : "focus:ring-pink-200 focus:border-pink-400"
-                }`}
+              className={`w-full px-4 py-3 rounded-xl border outline-none transition focus:ring-2 ${
+                errors.phone
+                  ? "border-red-400 focus:ring-red-200"
+                  : "focus:ring-pink-200 focus:border-pink-400"
+              }`}
             />
+
             <ErrMsg msg={errors.phone} />
           </div>
 
           <select
+            value={form.treatment}
+            onChange={handleTreatmentChange}
             aria-label="Select treatment"
             className="w-full px-4 py-3 rounded-xl border outline-none focus:ring-2 focus:ring-pink-200 focus:border-pink-400 transition"
           >
-            <option>Select treatment</option>
+            <option value="">
+              Select treatment
+            </option>
+
             <option>IVF</option>
+
             <option>IUI</option>
-            <option>Altruistic Surrogacy</option>
+
+            <option>
+              Altruistic Surrogacy
+            </option>
           </select>
 
           <Button
@@ -210,10 +331,14 @@ const LeadPopup = ({ onClose }: LeadPopupProps) => {
             disabled={loading}
             className="w-full bg-[#e1658a] text-white hover:opacity-90"
           >
-            {loading ? "Submitting..." : "Get Free Consultation"}
+            {loading
+              ? "Submitting..."
+              : "Get Free Consultation"}
           </Button>
 
-          <p className="text-xs text-center text-gray-400">100% confidential</p>
+          <p className="text-xs text-center text-gray-400">
+            100% confidential
+          </p>
         </form>
       </div>
     </div>

@@ -184,11 +184,11 @@ const Navbar = () => {
 
         <div className="hidden lg:flex items-center gap-3">
           <a
-            href="tel:+919711748080"
+            href="tel:+9197117 48080"
             className="flex items-center gap-2 bg-pink-600 hover:bg-pink-700 text-white px-5 py-2.5 rounded-full text-sm font-semibold shadow-md transition-all duration-300"
           >
             <Phone className="h-4 w-4" />
-            +91 9711748080
+            +91 97117 48080
           </a>
         </div>
 
@@ -356,11 +356,11 @@ const Navbar = () => {
 
             <div className="pt-5">
               <a
-                href="tel:+919711748080"
+                href="tel:+9197117 48080"
                 className="flex items-center justify-center gap-2 bg-pink-600 hover:bg-pink-700 text-white px-5 py-3 rounded-full text-sm font-semibold transition-all duration-300"
               >
                 <Phone className="h-4 w-4" />
-                +91 9711748080
+                +91 97117 48080
               </a>
             </div>
 

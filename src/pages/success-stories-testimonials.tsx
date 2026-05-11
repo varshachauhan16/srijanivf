@@ -2,7 +2,7 @@ import React from "react";
 import aboutImg from "@/assets/About-us-banner.jpg";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import Callus from "@/components/callbtn";
+//import Callus from "@/components/callbtn";
 import WhatsAppButton from "@/components/WhatsAppButton";
 
 const videos = [
@@ -135,7 +135,7 @@ const SuccessStoriesPage = () => {
       </section>
 
       <WhatsAppButton />
-      <Callus />
+      
       <Footer />
     </>
   );

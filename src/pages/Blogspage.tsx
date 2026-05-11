@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import Callus from "@/components/callbtn";
+//import Callus from "@/components/callbtn";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import bannerImg from "@/assets/About-us-banner.jpg";
 import { blogs } from "@/blogs";
@@ -84,7 +84,7 @@ const BlogsPage = () => {
         </div>
       </section>
 
-      <Callus />
+      
       <WhatsAppButton />
       <Footer />
     </>

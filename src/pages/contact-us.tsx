@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import Callus from "@/components/callbtn";
+//import Callus from "@/components/callbtn";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import bannerImg from "@/assets/About-us-banner.jpg";
 import Appointments from "@/components/Appointment";
@@ -59,7 +59,7 @@ const ContactPage = () => {
         ></iframe>
       </section>
       <Reviews />
-      <Callus />
+      
       <WhatsAppButton />
       <Footer />
     </>

@@ -138,7 +138,7 @@ const Footer = () => {
               </li>
               <li className="flex gap-3">
                 <Phone className="h-4 w-4 mt-0.5 text-white shrink-0" />
-                <a href="tel:+919711748080" className="hover:underline">+91 9711748080</a>
+                <a href="tel:+9197117 48080" className="hover:underline">+91 97117 48080</a>
               </li>
               <li className="flex gap-3">
                 <Mail className="h-4 w-4 mt-0.5 text-white shrink-0" />
@@ -171,7 +171,7 @@ const Footer = () => {
 
       <div className="fixed bottom-0 left-0 right-0 z-40 flex md:hidden shadow-[0_-2px_12px_rgba(0,0,0,0.15)]">
         <a
-          href="tel:+919711748080"
+          href="tel:+9197117 48080"
           className="flex-1 flex items-center justify-center gap-2 font-semibold text-sm py-4 transition active:opacity-80"
           style={{ backgroundColor: "#b5446a", color: "#fff" }}
         >
