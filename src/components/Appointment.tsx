@@ -87,9 +87,9 @@ const Appointment = () => {
       newErrors.phone = "Phone number is required";
     } else if (!/^\d{10}$/.test(rawPhone)) {
       newErrors.phone = "Phone number must be exactly 10 digits";
-    } else if (!/^[789]/.test(rawPhone)) {
+    } else if (!/^[6789]/.test(rawPhone)) {
       newErrors.phone =
-        "Phone number must start with 7, 8, or 9";
+        "Phone number must start with 6, 7, 8, or 9";
     }
 
     if (!form.email.trim()) {
