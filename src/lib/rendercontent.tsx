@@ -47,6 +47,64 @@ export const renderContent = (content: string): ReactNode[] => {
       continue;
     }
 
+    // TABLE SUPPORT
+    if (line.includes("|") && i + 1 < lines.length && lines[i + 1].includes("|---")) {
+      const headers = line
+        .split("|")
+        .map((h) => h.trim())
+        .filter(Boolean);
+
+      i += 2;
+
+      const rows: string[][] = [];
+
+      while (i < lines.length && lines[i].includes("|")) {
+        const row = lines[i]
+          .split("|")
+          .map((cell) => cell.trim())
+          .filter(Boolean);
+
+        rows.push(row);
+        i++;
+      }
+
+      elements.push(
+        <div key={`table-${i}`} className="overflow-x-auto my-6">
+          <table className="w-full border border-gray-300 text-sm">
+            <thead className="bg-pink-50">
+              <tr>
+                {headers.map((header, idx) => (
+                  <th
+                    key={idx}
+                    className="border border-gray-300 px-4 py-3 text-left font-semibold text-gray-800"
+                  >
+                    {header}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+
+            <tbody>
+              {rows.map((row, rowIdx) => (
+                <tr key={rowIdx}>
+                  {row.map((cell, cellIdx) => (
+                    <td
+                      key={cellIdx}
+                      className="border border-gray-300 px-4 py-3 text-gray-600 leading-relaxed"
+                    >
+                      {parseBold(cell)}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      );
+
+      continue;
+    }
+
     if (line.startsWith("# ")) {
       elements.push(
         <h1
@@ -74,6 +132,7 @@ export const renderContent = (content: string): ReactNode[] => {
       i++;
       continue;
     }
+
     if (line.startsWith("### ")) {
       elements.push(
         <h3
@@ -87,7 +146,19 @@ export const renderContent = (content: string): ReactNode[] => {
       i++;
       continue;
     }
-    
+    if (line.startsWith("#### ")) {
+      elements.push(
+        <h4
+          key={i}
+          className="text-lg font-semibold text-pink-700 mt-5 mb-2 leading-snug"
+        >
+          {line.replace("#### ", "")}
+        </h4>
+      );
+
+      i++;
+      continue;
+    }
     if (line.startsWith("- ")) {
       const items: string[] = [];
 

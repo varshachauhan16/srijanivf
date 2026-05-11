@@ -188,7 +188,7 @@ const Navbar = () => {
             className="flex items-center gap-2 bg-pink-600 hover:bg-pink-700 text-white px-5 py-2.5 rounded-full text-sm font-semibold shadow-md transition-all duration-300"
           >
             <Phone className="h-4 w-4" />
-            +91 97117 48080
+            97117 48080
           </a>
         </div>
 
@@ -360,7 +360,7 @@ const Navbar = () => {
                 className="flex items-center justify-center gap-2 bg-pink-600 hover:bg-pink-700 text-white px-5 py-3 rounded-full text-sm font-semibold transition-all duration-300"
               >
                 <Phone className="h-4 w-4" />
-                +91 97117 48080
+                97117 48080
               </a>
             </div>
 
