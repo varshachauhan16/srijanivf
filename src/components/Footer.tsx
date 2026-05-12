@@ -115,14 +115,25 @@ const Footer = () => {
           </div>
           <div>
             <h4 className="font-semibold mb-4 text-sm">Centres</h4>
+            <h4 className="font-semibold mb-4 text-sm">Centres</h4>
+
             <ul className="space-y-2 text-sm text-white/80">
-              {["Delhi", "Indirapuram"].map((l) => (
-                <li key={l}>
+              {[
+                {
+                  name: "Delhi",
+                  url: "/best-ivf-centre-delhi",
+                },
+                {
+                  name: "Indirapuram",
+                  url: "/best-ivf-centre-indirapuram",
+                },
+              ].map((item) => (
+                <li key={item.name}>
                   <a
-                    href="/our-centres"
+                    href={item.url}
                     className="hover:text-white transition flex items-center gap-2"
                   >
-                    <span>»</span> {l}
+                    <span>»</span> {item.name}
                   </a>
                 </li>
               ))}
@@ -150,24 +161,22 @@ const Footer = () => {
         </div>
 
         <div className="container mx-auto border-t border-white/20 mt-12 pt-6 text-center text-sm text-white/70 pb-20 md:pb-0 px-4">
-
           <p className="mb-3">
-            © {new Date().getFullYear()} Srijan IVF. All rights reserved.
+            © 2021-26 Srijan IVF. All rights reserved.
           </p>
+        <p className="text-xs md:text-sm leading-relaxed max-w-5xl mx-auto text-white/80">
+          <span className="font-semibold text-white">
+            Disclaimer:
+          </span>{" "}
+          Srijan IVF strictly complies with the PCPNDT Act, 1994 and ART (Regulation) Act, 2021.
+          Gender selection and sex determination are strictly prohibited under Indian law.
+          We do not support or engage in any such practices.
+          All fertility services are provided only at registered clinics by licensed medical professionals
+          as per applicable laws and regulations.
+        </p>
 
-          <p className="text-xs md:text-sm leading-relaxed max-w-5xl mx-auto text-white/80">
-            <span className="font-semibold text-white">
-              Disclaimer:
-            </span>{" "}
-            Srijan IVF strictly complies with the PCPNDT Act, 1994 and ART (Regulation) Act, 2021.
-            Gender selection and sex determination are strictly prohibited under Indian law.
-            We do not support or engage in any such practices.
-            All fertility services are provided only at registered clinics by licensed medical professionals
-            as per applicable laws and regulations.
-          </p>
-
-        </div>
-      </footer>
+      </div>
+    </footer >
 
       <div className="fixed bottom-0 left-0 right-0 z-40 flex md:hidden shadow-[0_-2px_12px_rgba(0,0,0,0.15)]">
         <a
